@@ -3,111 +3,40 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MBTI 심리테스트</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        margin: 20px;
-      }
-      h1 {
-        text-align: center;
-      }
-      .question {
-        margin: 15px 0;
-      }
-      .page {
-        display: none;
-      }
-      .page.active {
-        display: block;
-      }
-      .navigation {
-        text-align: center;
-        margin-top: 20px;
-      }
-    </style>
+    <link rel="stylesheet" href="./style.css" />
+    <title>Github.Io</title>
   </head>
   <body>
-    <h1>MBTI 심리테스트</h1>
-
-    <!-- 페이지 1 -->
-    <div id="page1" class="page active">
-      <h2>1. 에너지 방향 & 인식 기능</h2>
-      <div class="question">
-        <p>1. 파티나 모임에 참석하는 것을 즐기며 에너지를 얻는다.</p>
-        <input type="radio" name="q1" value="O" /> 그렇다<br />
-        <input type="radio" name="q1" value="X" /> 아니다
-      </div>
-      <div class="question">
-        <p>2. 혼자서 생각하거나 책을 읽으며 에너지를 충전한다.</p>
-        <input type="radio" name="q2" value="O" /> 그렇다<br />
-        <input type="radio" name="q2" value="X" /> 아니다
-      </div>
-      <div class="question">
-        <p>3. 내가 본 것, 들은 것 등 구체적인 정보를 바탕으로 판단한다.</p>
-        <input type="radio" name="q3" value="O" /> 그렇다<br />
-        <input type="radio" name="q3" value="X" /> 아니다
-      </div>
-      <div class="question">
-        <p>4. 상상력을 통해 미래에 대한 가능성을 탐구하는 것을 즐긴다.</p>
-        <input type="radio" name="q4" value="O" /> 그렇다<br />
-        <input type="radio" name="q4" value="X" /> 아니다
-      </div>
-      <div class="question">
-        <p>5. 여러 사람과 대화하며 다양한 관점을 듣는 것을 좋아한다.</p>
-        <input type="radio" name="q5" value="O" /> 그렇다<br />
-        <input type="radio" name="q5" value="X" /> 아니다
-      </div>
-      <div class="navigation">
-        <button onclick="showPage(2)">다음 페이지</button>
-      </div>
-    </div>
-
-    <!-- 페이지 2 -->
-    <div id="page2" class="page">
-      <h2>2. 판단 기준 & 생활 양식</h2>
-      <div class="question">
-        <p>6. 논리적이고 객관적인 판단을 중요하게 생각한다.</p>
-        <input type="radio" name="q6" value="O" /> 그렇다<br />
-        <input type="radio" name="q6" value="X" /> 아니다
-      </div>
-      <div class="question">
-        <p>7. 다른 사람의 감정을 먼저 고려하며 판단한다.</p>
-        <input type="radio" name="q7" value="O" /> 그렇다<br />
-        <input type="radio" name="q7" value="X" /> 아니다
-      </div>
-      <div class="question">
-        <p>8. 계획적이고 체계적으로 일을 처리하는 것을 선호한다.</p>
-        <input type="radio" name="q8" value="O" /> 그렇다<br />
-        <input type="radio" name="q8" value="X" /> 아니다
-      </div>
-      <div class="question">
-        <p>9. 상황에 따라 유연하게 대처하는 것을 선호한다.</p>
-        <input type="radio" name="q9" value="O" /> 그렇다<br />
-        <input type="radio" name="q9" value="X" /> 아니다
-      </div>
-      <div class="question">
-        <p>10. 마감일 전에 미리 일을 끝내려고 노력한다.</p>
-        <input type="radio" name="q10" value="O" /> 그렇다<br />
-        <input type="radio" name="q10" value="X" /> 아니다
-      </div>
-      <div class="navigation">
-        <button onclick="showPage(1)">이전 페이지</button>
-        <button onclick="submitTest()">제출하기</button>
-      </div>
-    </div>
-
+    <h1>JS 테스트</h1>
     <script>
-      function showPage(pageNumber) {
-        document
-          .querySelectorAll(".page")
-          .forEach((page) => page.classList.remove("active"));
-        document.getElementById("page" + pageNumber).classList.add("active");
-      }
-
-      function submitTest() {
-        alert("테스트가 제출되었습니다! 결과를 확인하세요.");
-      }
+      const keyboard = [
+        {
+          no: 1,
+          link: "https://www.naver.com",
+        },
+        {
+          no: 2,
+          link: "https://www.google.com",
+        },
+        {
+          no: 3,
+          link: "https://www.nate.com",
+        },
+        {
+          no: 4,
+          link: "https://www.daum.net",
+        },
+      ];
+      const one = window.addEventListener("keyup", (key) => {
+        alert(key.key);
+        keyboard.forEach((num) => {
+          if (key.key == num.no) {
+            console.log("keyName", num.no);
+            console.log("link", num.link);
+            location.href = num.link;
+          }
+        });
+      });
     </script>
   </body>
 </html>
