@@ -27,7 +27,7 @@
           link: "https://www.daum.net",
         },
       ];
-      const one = window.addEventListener("keyup", (key) => {
+      const keyEvent = window.addEventListener("keyup", (key) => {
         alert(key.key);
         keyboard.forEach((num) => {
           if (key.key == num.no) {
