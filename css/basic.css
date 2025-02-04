@@ -25,10 +25,11 @@ a {
 }
 .mainIn {
   display: flex;
+  flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
   width: 50%;
-  margin: 20px auto;
+  margin: 0 auto 10%;
   min-height: 100px;
 }
 
