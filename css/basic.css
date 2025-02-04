@@ -15,6 +15,23 @@ a {
   border: 1px solid red;
 }
 
+.container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 10% auto 0;
+}
+.mainBox {
+  display: flex;
+}
+.mainIn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  margin: 20px auto;
+  min-height: 100px;
+}
+
 /* From Uiverse.io by Smit-Prajapati */
 .radio-container {
   --main-color: #f7e479;
