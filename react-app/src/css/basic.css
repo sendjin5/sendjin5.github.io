@@ -14,7 +14,11 @@ a {
 .red {
   border: 1px solid red;
 }
-
+.flex_between {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
 .container {
   width: 100%;
   max-width: 1400px;
