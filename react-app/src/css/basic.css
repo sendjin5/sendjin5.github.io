@@ -19,6 +19,18 @@ a {
   justify-content: space-between;
   width: 100%;
 }
+.flex_between_column {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  width: 100%;
+}
+.headerMenu {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 100vh;
+}
 .container {
   width: 100%;
   max-width: 1400px;
