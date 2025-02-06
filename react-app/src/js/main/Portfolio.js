@@ -1,4 +1,15 @@
+import "../../css/portfolio.css";
+
 const Portfolio = () => {
-  return <h2 style={{ textAlign: "center" }}>내용 준비중</h2>;
+  return (
+    <>
+      <div className="main">
+        <div className="card" id="c1"></div>
+        <div className="card" id="c2"></div>
+        <div className="card" id="c3"></div>
+        <div className="card" id="c4"></div>
+      </div>
+    </>
+  );
 };
 export default Portfolio;

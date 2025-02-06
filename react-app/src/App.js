@@ -1,9 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import Header from "./js/basic/Header";
-import Home from "./js/main/Home";
+import ThreeDimension from "./js/main/ThreeDimension";
 import Portfolio from "./js/main/Portfolio";
 import Animation from "./js/main/Animation";
+import CoverIndex from "./js/main/CoverIndex";
 import "./css/basic.css";
 
 const App = () => {
@@ -11,14 +12,15 @@ const App = () => {
 
   return (
     <Router>
-      <div className="flex_between">
+      <div className="flex_between" style={{ zIndex: -2 }}>
         <Header setSelectedRoute={setSelectedRoute} />
         <div className="container">
-          {selectedRoute === "/" && <Home />}
           {selectedRoute === "/Portfolio" && <Portfolio />}
-          {selectedRoute === "/Animation" && <Animation />}
+          {selectedRoute === "/" && <Animation />}
+          {selectedRoute === "/ThreeDimension" && <ThreeDimension />}
         </div>
       </div>
+      <CoverIndex />
     </Router>
   );
 };

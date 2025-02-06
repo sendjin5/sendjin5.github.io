@@ -34,7 +34,7 @@ a {
 .container {
   width: 100%;
   max-width: 1400px;
-  margin: 10% auto 0;
+  margin: 5% auto 0;
 }
 .mainBox {
   display: flex;

@@ -45,34 +45,33 @@ const Header = ({ setSelectedRoute }) => {
   return (
     <div className="headerMenu">
       <div className="w-64 h-screen bg-gray-800 text-white p-4">
-        <h2 className="text-xl font-bold mb-4">Menu</h2>
         <nav>
           <div className="radio-container">
             <input
-              defaultChecked
               id="radio-premium"
-              name="radio"
-              type="radio"
-              value="/"
-              onChange={(e) => setSelectedRoute(e.target.value)}
-            />
-            <label for="radio-premium">Home</label>
-            <input
-              id="radio-free"
               name="radio"
               type="radio"
               value="/Portfolio"
               onChange={(e) => setSelectedRoute(e.target.value)}
             />
-            <label for="radio-free">Portfolio</label>
+            <label for="radio-premium">Portfolio</label>
+            <input
+              defaultChecked
+              id="radio-free"
+              name="radio"
+              type="radio"
+              value="/"
+              onChange={(e) => setSelectedRoute(e.target.value)}
+            />
+            <label for="radio-free">Animation</label>
             <input
               id="radio-basic"
               name="radio"
               type="radio"
-              value="/Animation"
+              value="/ThreeDimension"
               onChange={(e) => setSelectedRoute(e.target.value)}
             />
-            <label for="radio-basic">Animation</label>
+            <label for="radio-basic">3D</label>
             <div className="glider-container">
               <div className="glider"></div>
             </div>
@@ -88,14 +87,14 @@ const Header = ({ setSelectedRoute }) => {
               onClick={toggleMusic}
               className="bg-gray-800 text-white p-2 rounded-full shadow-lg flex items-center justify-center w-12 h-12 hover:bg-gray-700 transition"
             >
-              {isPlaying ? <Volume2 size={24} /> : <VolumeX size={24} />}
+              {isPlaying ? <Volume2 size={32} /> : <VolumeX size={32} />}
             </button>
-            <button
+            {/* <button
               onClick={nextSong}
               className="bg-gray-800 text-white p-2 rounded-full shadow-lg flex items-center justify-center w-12 h-12 hover:bg-gray-700 transition"
             >
               <SkipForward size={24} />
-            </button>
+            </button> */}
           </div>
         </div>
       </div>
