@@ -6,8 +6,8 @@ export function Land() {
 
   // 애니메이션 효과 추가 (매 프레임마다 실행됨)
   useFrame(() => {
-    meshRef.current.rotation.x = 0.01; // X축 회전
-    meshRef.current.rotation.y = 0.01; // Y축 회전
+    meshRef.current.rotation.x += 0.005; // X축 회전
+    meshRef.current.rotation.y += 0.005; // Y축 회전
   });
 
   return (
