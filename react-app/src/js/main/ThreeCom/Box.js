@@ -13,7 +13,7 @@ export function Box() {
   return (
     <mesh ref={meshRef} scale={1}>
       {/* 박스(메쉬) 생성, ref를 연결하여 조작 가능하도록 함 */}
-      <boxGeometry args={[2, 0.4, 1]} />
+      <boxGeometry args={[2, 0.5, 1]} />
       {/* 박스의 크기 (가로, 세로, 높이) */}
       <meshStandardMaterial color="#f7e479" />
       {/* 박스의 색상을 설정 */}
