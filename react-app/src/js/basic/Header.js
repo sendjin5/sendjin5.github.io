@@ -85,6 +85,7 @@ const Header = ({ setSelectedRoute }) => {
           <div className="flex gap-2">
             <button
               onClick={toggleMusic}
+              styel={{ borderRadius: 15, padding: 5 }}
               className="bg-gray-800 text-white p-2 rounded-full shadow-lg flex items-center justify-center w-12 h-12 hover:bg-gray-700 transition"
             >
               {isPlaying ? <Volume2 size={32} /> : <VolumeX size={32} />}
