@@ -16,7 +16,7 @@ const App = () => {
         <Header setSelectedRoute={setSelectedRoute} />
         <div className="container">
           {selectedRoute === "/Portfolio" && <Portfolio />}
-          {selectedRoute === "/" && <Animation />}  
+          {selectedRoute === "/" && <Animation />}
           {selectedRoute === "/ThreeDimension" && <ThreeDimension />}
         </div>
       </div>
