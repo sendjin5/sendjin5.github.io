@@ -1,5 +1,6 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import { useState } from "react";
+import Test from "./js/main/TestJs";
 import Header from "./js/basic/Header";
 import ThreeDimension from "./js/main/ThreeDimension";
 import Portfolio from "./js/main/Portfolio";
@@ -15,7 +16,7 @@ const App = () => {
       <div className="flex_between" style={{ zIndex: -2 }}>
         <Header setSelectedRoute={setSelectedRoute} />
         <div className="container">
-          {selectedRoute === "/Portfolio" && <Portfolio />}
+          {selectedRoute === "/Portfolio" && <Test />}
           {selectedRoute === "/" && <Animation />}
           {selectedRoute === "/ThreeDimension" && <ThreeDimension />}
         </div>
