@@ -87,7 +87,7 @@ const Test = () => {
           <button className="btn" onClick={downloadNotebook}>
             ⬇ Download JSON
           </button>
-          <div ref={notebookRef}>
+          {/* <div ref={notebookRef}>
             {filteredCells.map((cell, idx) => (
               <div key={idx} className="cell p-4 my-2 bg-gray-50 relative">
                 <div className="absolute top-2 right-2">
@@ -113,7 +113,7 @@ const Test = () => {
                 )}
               </div>
             ))}
-          </div>
+          </div> */}
         </div>
         <div className="w-1 bg-gray-300 cursor-ew-resize"></div>
         <div className="w-1/2 p-4 overflow-auto">
