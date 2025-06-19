@@ -7,7 +7,7 @@ import python from "@codemirror/lang-python";
 
 import { Heading1 } from "lucide-react";
 
-const Test = () => {
+export const Test3 = () => {
   // return (
   //   <>
   //     <h1>테스트용</h1>;<h1>테스트용</h1>;
@@ -126,5 +126,3 @@ const Test = () => {
     </main>
   );
 };
-
-export default Test;
