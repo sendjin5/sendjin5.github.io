@@ -64,14 +64,22 @@ const Header = ({ setSelectedRoute }) => {
               onChange={(e) => setSelectedRoute(e.target.value)}
             />
             <label for="radio-free">Animation</label>
-            <input
+            {/* <input
               id="radio-basic"
               name="radio"
               type="radio"
               value="/ThreeDimension"
               onChange={(e) => setSelectedRoute(e.target.value)}
             />
-            <label for="radio-basic">3D</label>
+            <label for="radio-basic">3D</label> */}
+            <input
+              id="radio-basic"
+              name="radio"
+              type="radio"
+              value="/Forest"
+              onChange={(e) => setSelectedRoute(e.target.value)}
+            />
+            <label for="radio-basic">Forest</label>
             <div className="glider-container">
               <div className="glider"></div>
             </div>
