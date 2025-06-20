@@ -1,6 +1,7 @@
 import { BrowserRouter as Router } from "react-router-dom";
 import { useState } from "react";
 import Test from "./js/main/TestJs";
+import Test2 from "./js/main/TestJs2";
 import Header from "./js/basic/Header";
 import ThreeDimension from "./js/main/ThreeDimension";
 import Portfolio from "./js/main/Portfolio";
@@ -19,6 +20,7 @@ const App = () => {
           {selectedRoute === "/Portfolio" && <Test />}
           {selectedRoute === "/" && <Animation />}
           {selectedRoute === "/ThreeDimension" && <ThreeDimension />}
+          {selectedRoute === "/Forest" && <Test2 />}
         </div>
       </div>
       <CoverIndex />
