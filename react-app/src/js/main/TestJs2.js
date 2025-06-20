@@ -1,130 +1,47 @@
-import { useEffect, useRef, useState } from "react";
-import CodeMirror from "@uiw/react-codemirror";
-import axios from "axios";
-// import marked from "marked";
-import Sortable from "sortablejs";
-import python from "@codemirror/lang-python";
+import React from "react";
+import { Canvas } from "@react-three/fiber"; // Three.js를 React에서 쉽게 사용하기 위한 라이브러리
+import { OrbitControls } from "@react-three/drei"; // 마우스로 뷰를 조작할 수 있도록 해주는 유틸
+import { Forest } from "./ThreeCom/Forest"; // 숲 컴포넌트
+import { NaturalGround } from "./ThreeCom/NaturalGround"; // 자연스러운 지형
+import { Sky } from "./ThreeCom/Sky"; // 하늘과 구름
+import { Rocks } from "./ThreeCom/Rocks"; // 바위들
+import { Animals } from "./ThreeCom/Animals"; // 동물들
+import { Player } from "./ThreeCom/Player"; // 플레이어 캐릭터
+import { House } from "./ThreeCom/House"; // 집
 
-import { Heading1 } from "lucide-react";
-
-const Test = () => {
-  // return (
-  //   <>
-  //     <h1>테스트용</h1>;<h1>테스트용</h1>;
-  //   </>
-  // );
-  const [cells, setCells] = useState([]);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [sidebarOpen, setSidebarOpen] = useState(true);
-  const notebookRef = useRef(null);
-  useEffect(() => {
-    fetch("/media/notebook.json")
-      .then((res) => res.json())
-      .then((data) => setCells(data))
-      .catch(console.error);
-  }, []);
-  useEffect(() => {
-    if (notebookRef.current) {
-      new Sortable(notebookRef.current, { animation: 150 });
-    }
-  }, [cells]);
-  const runCode = async (code, idx) => {
-    const updatedCells = [...cells];
-    updatedCells[idx].output = "코드를 실행 중입addCell니다...";
-    setCells(updatedCells);
-    try {
-      const response = await axios.post("http://15.164.170.66/executeCode/", {
-        code,
-        language: "python",
-      });
-      updatedCells[idx].output = response.data.output || "실행 결과 없음";
-    } catch (error) {
-      updatedCells[idx].output = `❌ 실행 실패: ${error.message}`;
-    }
-    setCells([...updatedCells]);
-  };
-  const addCell = (type) => {
-    setCells([...cells, { type, markdown: "", code: "", output: "" }]);
-  };
-  const deleteCell = (idx) => {
-    setCells(cells.filter((_, index) => index !== idx));
-  };
-  const duplicateCell = (idx) => {
-    setCells([...cells.slice(0, idx + 1), cells[idx], ...cells.slice(idx + 1)]);
-  };
-  const downloadNotebook = () => {
-    const blob = new Blob([JSON.stringify(cells)], { type: "application/json" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "notebook.json";
-    a.click();
-    URL.revokeObjectURL(url);
-  };
-  const filteredCells = cells.filter((cell) => (cell.markdown + cell.code).toLowerCase().includes(searchQuery.toLowerCase()));
+const ThreeDimension = () => {
   return (
-    <main className="flex w-full h-[calc(100vh-105px)] bg-gray-200 overflow-auto">
-      <aside className={`w-64 bg-white p-4 overflow-auto transition-transform ${sidebarOpen ? "" : "-translate-x-full"}`}>
-        <button onClick={() => setSidebarOpen(!sidebarOpen)}>{sidebarOpen ? "☰ 닫기" : "☰"}</button>
-        {/* Sidebar Menu Here */}
-      </aside>
-      <div className="flex flex-1">
-        <div className="w-1/2 p-4 overflow-auto">
-          <h1>Python Web Editor</h1>
-          <input
-            type="text"
-            placeholder="🔍 문장찾기..."
-            className="mb-4 p-2"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-          <button className="btn" onClick={() => addCell("markdown")}>
-            ➕ Markdown
-          </button>
-          <button className="btn" onClick={() => addCell("code")}>
-            ➕ Code
-          </button>
-          <button className="btn" onClick={downloadNotebook}>
-            ⬇ Download JSON
-          </button>
-          {/* <div ref={notebookRef}>
-            {filteredCells.map((cell, idx) => (
-              <div key={idx} className="cell p-4 my-2 bg-gray-50 relative">
-                <div className="absolute top-2 right-2">
-                  <button onClick={() => duplicateCell(idx)}>📄</button>
-                  <button onClick={() => deleteCell(idx)}>🗑️</button>
-                </div>
-                {cell.type === "markdown" ? (
-                  <div dangerouslySetInnerHTML={{ __html: marked.parse(cell.markdown || "") }} />
-                ) : (
-                  <>
-                    <CodeMirror
-                      value={cell.code || 'print("Hello Python!")'}
-                      options={{ mode: "python", theme: "default" }}
-                      onChange={(val) => {
-                        const newCells = [...cells];
-                        newCells[idx].code = val;
-                        setCells(newCells);
-                      }}
-                    />
-                    <button onClick={() => runCode(cell.code, idx)}>Run</button>
-                    <pre className="bg-black text-white p-2 mt-2">{cell.output}</pre>
-                  </>
-                )}
-              </div>
-            ))}
-          </div> */}
-        </div>
-        <div className="w-1 bg-gray-300 cursor-ew-resize"></div>
-        <div className="w-1/2 p-4 overflow-auto">
-          <video controls muted playsInline autoPlay className="w-full h-auto">
-            <source src="/media/video1.mp4" type="video/mp4" />
-          </video>
-          <button className="btn-primary">다음 레슨</button>
-        </div>
-      </div>
-    </main>
+    <Canvas camera={{ position: [8, 3, 8], fov: 60 }}>
+      {/* 3D 공간을 렌더링하는 기본 캔버스, 카메라 초기 위치 설정 */}
+      
+      {/* 자연스러운 조명 설정 */}
+      <ambientLight intensity={0.6} />
+      {/* 전체적인 환경광 (빛) 추가 */}
+      <directionalLight position={[10, 10, 5]} intensity={1.5} castShadow />
+      {/* 태양빛 같은 방향성 조명 */}
+      <directionalLight position={[-5, 5, -5]} intensity={0.5} />
+      {/* 보조 조명으로 그림자 부드럽게 */}
+      
+      {/* 숲 환경 구성 */}
+      <Sky />
+      <NaturalGround />
+      <Forest />
+      <Rocks />
+      <Animals />
+      <House />
+      <Player />
+      
+      {/* 마우스로 3D 모델을 회전할 수 있도록 해줌 */}
+      <OrbitControls 
+        enablePan={true}
+        enableZoom={true}
+        enableRotate={true}
+        maxPolarAngle={Math.PI / 2}
+        minDistance={2}
+        maxDistance={50}
+      />
+    </Canvas>
   );
 };
 
-export default Test;
+export default ThreeDimension;
