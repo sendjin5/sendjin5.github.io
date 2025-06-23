@@ -79,7 +79,15 @@ const Header = ({ setSelectedRoute }) => {
               value="/Forest"
               onChange={(e) => setSelectedRoute(e.target.value)}
             />
-            <label for="radio-basic">Forest</label>
+            <label for="radio-basic">3D Map</label>
+            {/* <input
+              id="radio-extended"
+              name="radio"
+              type="radio"
+              value="/ExtendedMap"
+              onChange={(e) => setSelectedRoute(e.target.value)}
+            />
+            <label for="radio-extended">🗺️ 확장된 맵</label> */}
             <div className="glider-container">
               <div className="glider"></div>
             </div>
