@@ -7,6 +7,7 @@ import ThreeDimension from "./js/main/ThreeDimension";
 import Portfolio from "./js/main/Portfolio";
 import Animation from "./js/main/Animation";
 import CoverIndex from "./js/main/CoverIndex";
+import ExtendedMap from "./js/main/TestJs5";
 import "./css/basic.css";
 
 const App = () => {
@@ -20,7 +21,8 @@ const App = () => {
           {selectedRoute === "/Portfolio" && <Test />}
           {selectedRoute === "/" && <Animation />}
           {selectedRoute === "/ThreeDimension" && <ThreeDimension />}
-          {selectedRoute === "/Forest" && <Test2 />}
+          {selectedRoute === "/Forest" && <ExtendedMap />}
+          {/* {selectedRoute === "/ExtendedMap" && <ExtendedMap />} */}
         </div>
       </div>
       <CoverIndex />
