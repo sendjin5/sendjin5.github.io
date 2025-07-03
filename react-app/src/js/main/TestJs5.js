@@ -17,6 +17,7 @@ const ExtendedMap = () => {
   return (
     <div style={{ position: 'relative', width: '100%', height: '100vh' }}>
       {/* 뷰 전환 버튼들 */}
+      {/* 테스트 용으로 지속적으로 진행 */}
       <div style={{
         position: 'absolute',
         top: '20px',
