@@ -3,14 +3,9 @@
 Thumbs.db
 
 ### IDEs ###
-# IntelliJ
 .idea/
 *.iml
-
-# VS Code
 .vscode/
-
-# Eclipse
 .project
 .classpath
 .settings/
@@ -25,36 +20,25 @@ replay_pid*
 
 ### Gradle ###
 .gradle/
-build/
-!src/**/build/
-**/out/
-**/bin/
-
-# Gradle Wrapper
-gradle-app.setting
-.gradle/
-build/
-!gradle/wrapper/gradle-wrapper.jar
+**/build/
 !**/src/**/build/
+!gradle/wrapper/gradle-wrapper.jar
 
-# Properties
+### Properties ###
 **/application.properties
 **/application.yml
 
 ### Maven ###
 target/
-pom.xml.tag
-pom.xml.releaseBackup
-pom.xml.versionsBackup
-pom.xml.next
+pom.xml.*
 release.properties
 dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
 
-### Node.js (for React/Vue) ###
-node_modules/
+### Node.js (React/Vue) ###
+**/node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
@@ -63,24 +47,15 @@ package-lock.json
 .env
 .env.*.local
 
-# Vue-specific
-/dist/
+### Vue / React ###
 **/dist/
-
-# React build output
-/build/
 **/build/
 
 ### Docker ###
-# Ignore docker build output/logs
 *.log
 docker-compose.override.yml
 .docker/
 docker.env
-
-# Optional Dockerfiles (if you want to ignore generated ones)
-# Dockerfile.local
-# Dockerfile.prod
 
 ### MariaDB ###
 *.sql
@@ -89,25 +64,16 @@ docker.env
 
 ### Logs ###
 *.log
-logs/
-**/logs/
-log/
-**/log/
+**/log*/
+**/logs*/
 
-### AWS Ubuntu ###
-# 일반적으로 시스템 관련 파일은 서버에서만 생기므로 아래는 선택적
+### AWS ###
 *.pem
 *.key
 *.crt
-
-# SSH
 .ssh/
 
-### 기타 ###
-# Java crash logs
-hs_err_pid*
-
-# Ignore compiled forms (Oracle Forms if any)
+### Oracle Forms ###
 *.fmx
 *.mmx
 *.plx
