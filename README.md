@@ -187,4 +187,4 @@ Contact 섹션의 소셜 링크를 실제 프로필 URL로 변경:
 - **연락처**: 010-4928-1787
 - **GitHub**: [GitHub 프로필 링크]
 - **LinkedIn**: [LinkedIn 프로필 링크]
-- test3
+- test4
