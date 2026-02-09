@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>박세영 & 오현정 Wedding Invitation</title>
+    <!-- Google Fonts: Cinzel (Titles) & Cormorant Garamond (Body) for LotR Feel -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        /* 
+         * [스타일 정의]
+         * 테마: 반지의 제왕 (Elven/Fantasy)
+         * 폰트: Cinzel (제목 - 고대 엘프 느낌), Cormorant Garamond (본문 - 서적 느낌)
+         * 색상: 골드(#C5A059), 딥 그린(#2F4F2F), 파치먼트(#FFF8E7)
+         */
+        :root {
+            --elf-gold: #C5A059;
+            --elf-green: #2F4F2F;
+            --elf-dark: #1A1A1A;
+            --elf-parchment: #FFF8E7;
+            --elf-font-title: 'Cinzel', serif;
+            --elf-font-body: 'Cormorant Garamond', serif;
+        }
+
+        /* 
+         * [Class] Body
+         * 전체 배경 설정: 숲속 엘프 마을 느낌의 배경 이미지 적용
+         */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--elf-parchment);
+            color: #333;
+            font-family: var(--elf-font-body);
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+         
+        }
+
+        a { text-decoration: none; color: inherit; transition: color 0.3s; }
+        a:hover { color: var(--elf-gold); }
+        ul, li { list-style: none; padding: 0; margin: 0; }
+
+        /* 
+         * [Class] Container
+         * 메인 콘텐츠 영역: 반투명한 양피지 느낌의 배경
+         */
+        .container {
+            width: 100%;
+            max-width: 500px; /* 모바일 최적화 */
+            background-color: rgba(255, 248, 231, 0.92); /* 양피지 색상 + 투명도 */
+            box-shadow: 0 0 30px rgba(0,0,0,0.7);
+            padding-bottom: 50px;
+            border-left: 1px solid #d4c5a0;
+            border-right: 1px solid #d4c5a0;
+            position: relative;
+        }
+
+        /* [Feature] 상단 및 하단 장식 테두리 */
+        .container::before, .container::after {
+            content: "";
+            display: block;
+            height: 5px;
+            background: linear-gradient(to right, transparent, var(--elf-gold), transparent);
+            margin: 0 auto;
+            width: 80%;
+        }
+
+        /* 헤더 & 로고 */
+        .header {
+            padding: 60px 20px 40px;
+            text-align: center;
+        }
+
+        .logo-box {
+            /* 엘프 문양 느낌의 테두리 */
+            border: 2px double var(--elf-gold);
+            padding: 20px 40px;
+            display: inline-block;
+            border-radius: 5px; 
+            background-color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        /* 모서리 장식 (가상 요소 활용) */
+        .logo-box::before {
+            content: "✦";
+            position: absolute;
+            top: -12px; left: 50%;
+            transform: translateX(-50%);
+            color: var(--elf-gold);
+            background: rgba(255, 248, 231, 1);
+            padding: 0 10px;
+        }
+
+        .logo-text {
+            color: var(--elf-green);
+            font-family: var(--elf-font-title);
+            font-size: 2.2rem;
+            line-height: 1.2;
+            text-transform: uppercase;
+            margin: 0;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .main-photo {
+            width: 90%;
+            display: block;
+            margin: 0 auto;
+            border: 5px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            border-radius: 200px 200px 0 0; /* 아치형 이미지 */
+        }
+
+        /* 섹션 공통 */
+        .section {
+            padding: 40px 25px;
+            text-align: center;
+            position: relative;
+        }
+
+        /* 섹션 구분선: 우아한 곡선 이미지 또는 CSS 그래픽 */
+        .divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--elf-gold), transparent);
+            width: 60%;
+            margin: 30px auto;
+        }
+
+        .section-title {
+            color: var(--elf-green);
+            font-family: var(--elf-font-title);
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 40px;
+            height: 2px;
+            background-color: var(--elf-gold);
+            margin: 10px auto 0;
+        }
+
+        /* 이름 & 날짜 */
+        .intro-names {
+            font-family: var(--elf-font-title);
+            font-size: 2rem;
+            color: var(--elf-dark);
+            margin-bottom: 15px;
+        }
+        
+        .intro-date {
+            color: var(--elf-gold);
+            font-family: var(--elf-font-title);
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .intro-place {
+            color: #666;
+            font-size: 1.1rem;
+            font-style: italic;
+        }
+
+        /* 연락처 버튼: 고대 버튼 스타일 */
+        .contact-btn {
+            background-color: var(--elf-green);
+            color: var(--elf-parchment);
+            border: 1px solid var(--elf-gold);
+            padding: 12px 20px;
+            width: 100%;
+            margin-top: 10px;
+            cursor: pointer;
+            font-family: var(--elf-font-title);
+            font-size: 1rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .contact-btn:hover {
+            background-color: #1e331e;
+            border-color: #fff;
+        }
+
+        .contact-list {
+            display: none;
+            background-color: #fff;
+            padding: 15px;
+            margin-top: 5px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        
+        .contact-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .contact-actions a {
+            margin-left: 10px;
+            display: inline-block;
+            padding: 5px 12px;
+            background: var(--elf-gold);
+            color: white;
+            border-radius: 2px;
+            font-size: 0.8rem;
+            font-family: var(--elf-font-title);
+        }
+
+        /* 갤러리 (그리드) */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 2px;
+            border: 3px double #ddd; /* 액자 느낌 */
+            transition: transform 0.3s, border-color 0.3s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .gallery-item img:hover {
+            border-color: var(--elf-gold);
+            transform: scale(1.02);
+        }
+
+        /* 오시는 길 */
+        .map-area {
+            background-color: #fff;
+            height: 300px;
+            margin: 20px 0;
+            border: 5px solid #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .transport-info {
+            text-align: left;
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.8;
+            background: rgba(255, 255, 255, 0.6);
+            padding: 20px;
+            border-radius: 5px;
+        }
+        .transport-info strong {
+            color: var(--elf-green);
+            font-family: var(--elf-font-title);
+            display: block;
+            margin-top: 15px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+
+        /* 계좌번호 */
+        .account-box {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin-bottom: 10px;
+            border: 1px solid #eee;
+            text-align: center;
+        }
+        .account-num {
+            display: block;
+            font-family: var(--elf-font-title);
+            font-size: 1.2rem;
+            color: var(--elf-dark);
+            margin: 10px 0;
+            letter-spacing: 1px;
+        }
+        .copy-btn {
+            background-color: #777;
+            border: none;
+            color: #fff;
+            padding: 5px 15px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-family: var(--elf-font-body);
+        }
+
+        /* 방명록 */
+        .guestbook-form input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 8px;
+            box-sizing: border-box;
+            background: #fff;
+            border: 1px solid #ccc;
+            font-family: var(--elf-font-body);
+            font-size: 1rem;
+        }
+        .guestbook-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--elf-gold);
+            color: #fff;
+            border: none;
+            font-family: var(--elf-font-title);
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .guestbook-btn:hover {
+            background-color: #a38243;
+        }
+        .guestbook-list {
+            margin-top: 30px;
+            text-align: left;
+        }
+        .guest-item {
+            background: #fff;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-left: 3px solid var(--elf-green);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .guest-name { font-weight: bold; color: var(--elf-green); font-family: var(--elf-font-title); }
+        .guest-msg { margin-top: 8px; font-size: 1rem; color: #444; }
+
+        /* 카운트다운 */
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+        }
+        .time-box {
+            /* 원형 디자인 */
+            width: 60px;
+            height: 60px;
+            border: 2px solid var(--elf-gold);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--elf-green);
+            background: #fff;
+        }
+        .time-val { font-size: 1.2rem; font-weight: bold; font-family: var(--elf-font-title); }
+        .time-label { font-size: 0.6rem; margin-top: 2px; }
+
+        /* 모시는 글 본문 */
+        .invitation-text {
+            text-align: center; 
+            line-height: 2.2; 
+            font-size: 1.1rem;
+            color: #444;
+            background: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g fill="%23f4e9d5" fill-opacity="0.4"><path d="M50 0 L100 50 L50 100 L0 50 Z"/></g></svg>'); /* 은은한 패턴 */
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        footer {
+            border-top: 1px solid #ddd;
+            margin-top: 20px;
+            padding-top: 20px !important;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- 헤더 -->
+    <header class="header">
+        <div class="logo-box">
+            <h1 class="logo-text">The Wedding<br>of<br>INVITATION</h1>
+        </div>
+    </header>
+
+    <!-- 메인 사진 -->
+    <img src="./weddingIMG/profile.jpg" alt="Main Photo" class="main-photo">
+
+    <!-- 소개 섹션 -->
+    <div class="section">
+        <div class="intro-names">
+            박세영 <span style="color:var(--elf-gold); font-size: 1.5rem;">&</span> 오현정
+        </div>
+        <div class="divider"></div>
+        <div class="intro-date">2026. 10. 10. SAT AM 11:00</div>
+        <div class="intro-place">웨딩여율리 5층 라온제나홀</div>
+
+        <!-- 카운트다운 (JS로 작동) -->
+        <div class="countdown" id="countdown">
+            <div class="time-box"><span class="time-val" id="days">00</span><span class="time-label">DAYS</span></div>
+            <div class="time-box"><span class="time-val" id="hours">00</span><span class="time-label">HRS</span></div>
+            <div class="time-box"><span class="time-val" id="minutes">00</span><span class="time-label">MIN</span></div>
+            <div class="time-box"><span class="time-val" id="seconds">00</span><span class="time-label">SEC</span></div>
+        </div>
+    </div>
+
+    <!-- 모시는 글 -->
+    <div class="section">
+        <h2 class="section-title">Invitation</h2>
+        <div class="invitation-text">
+            오랜 시간 서로를 찾아 헤매던<br>
+            <strong>박세영</strong> 군과 <strong>오현정</strong> 양의<br>
+            새로운 여정이 시작되는 순간에 초대합니다.<br>
+            <br>
+            두 개의 반지가 하나가 되듯,<br>
+            두 사람의 운명이 하나로 묶이는 날.<br>
+            <br>
+            이곳은 단순한 예식장이 아닌,<br>
+            사랑이라는 위대한 모험이 시작되는 곳입니다.<br>
+            마법 같은 저희의 시작을<br>
+            함께 증언해 주십시오.<br>
+            <br>
+            감동과 기쁨이 가득한 하루가 될 것입니다.<br>
+            <strong>Welcome to our Beginning</strong>
+        </div>
+    </div>
+
+    <!-- 연락처 -->
+    <div class="section">
+        <h2 class="section-title">Contact</h2>
+        
+        <button class="contact-btn" onclick="toggleContact('groom-contact')">Grooom's Contact ▼</button>
+        <div id="groom-contact" class="contact-list">
+            <div class="contact-item">
+                <span>신랑 <strong>박세영</strong></span>
+                <div class="contact-actions">
+                    <a href="tel:01012341234">Call</a>
+                    <a href="sms:01012341234">Msg</a>
+                </div>
+            </div>
+            <div class="contact-item">
+                <span>아버지 <strong>아버님</strong></span>
+                <div class="contact-actions">
+                    <a href="tel:01038240471">Call</a>
+                    <a href="sms:01038240471">Msg</a>
+                </div>
+            </div>
+            <div class="contact-item">
+                <span>어머니 <strong>어머님</strong></span>
+                <div class="contact-actions">
+                    <a href="tel:01077226673">Call</a>
+                    <a href="sms:01077226673">Msg</a>
+                </div>
+            </div>
+        </div>
+
+        <button class="contact-btn" onclick="toggleContact('bride-contact')">Bride's Contact ▼</button>
+        <div id="bride-contact" class="contact-list">
+            <div class="contact-item">
+                <span>신부 <strong>오현정</strong></span>
+                <div class="contact-actions">
+                    <a href="tel:01012345678">Call</a>
+                    <a href="sms:01012345678">Msg</a>
+                </div>
+            </div>
+            <div class="contact-item">
+                <span>아버지 <strong>아버님</strong></span>
+                <div class="contact-actions">
+                    <a href="tel:01052651582">Call</a>
+                    <a href="sms:01052651582">Msg</a>
+                </div>
+            </div>
+            <div class="contact-item">
+                <span>어머니 <strong>어머님</strong></span>
+                <div class="contact-actions">
+                    <a href="tel:01050124121">Call</a>
+                    <a href="sms:01050124121">Msg</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 갤러리 -->
+    <div class="section">
+        <h2 class="section-title">Gallery</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item"><img src="./바른손카드 모바일청첩장_files/0e9a9b39-5d66-4b17-b15c-b5ca1389cef2.jpg" loading="lazy"></div>
+            <div class="gallery-item"><img src="./바른손카드 모바일청첩장_files/b0ddfe64-808c-41e3-90aa-5a7c71a4ee7c.jpg" loading="lazy"></div>
+            <div class="gallery-item"><img src="./바른손카드 모바일청첩장_files/91533a55-3a55-48eb-90c5-b5512faba6c5.jpg" loading="lazy"></div>
+            <div class="gallery-item"><img src="./바른손카드 모바일청첩장_files/cbfdfd44-2fcb-4ce1-aba8-1e52c9db3bf8.jpg" loading="lazy"></div>
+        </div>
+    </div>
+
+    <!-- 오시는 길 -->
+    <div class="section">
+        <h2 class="section-title">Location</h2>
+        <div class="intro-place" style="color:var(--elf-green); font-weight:bold; font-family: var(--elf-font-title);">웨딩여율리 5층 라온제나홀</div>
+        <p style="font-size:0.9rem;">서울 영등포구 국제금융로6길 26</p>
+        
+        <div class="map-area">
+              <img src="./weddingIMG/map.png" width="100%" height="100%" frameborder="0" style="border:0; object-fit: cover;">
+        </div>
+
+        <div class="transport-info">
+            <strong>[지하철]</strong>
+            5호선, 9호선 "여의도역" 5번 출구 도보 3분 거리<br>
+            <strong>[버스]</strong>
+            여의도역 or 한국거래소 하차 도보 3분<br>
+            <strong>[자가용]</strong>
+            네비게이션: "웨딩여율리" 또는 "노총회관"<br>
+            (무료주차 2시간)
+        </div>
+    </div>
+
+    <!-- 마음 전하실 곳 -->
+    <div class="section">
+        <h2 class="section-title">Account</h2>
+        <button class="contact-btn" onclick="toggleContact('account-groom')">Groom's Account ▼</button>
+        <div id="account-groom" class="contact-list">
+            <div class="account-box">
+                <span>신랑 박세영 (KB국민)</span>
+                <span class="account-num">01012341234</span>
+                <button class="copy-btn" onclick="copyText('01012341234')">복사하기</button>
+            </div>
+        </div>
+
+        <button class="contact-btn" onclick="toggleContact('account-bride')">Bride's Account ▼</button>
+        <div id="account-bride" class="contact-list">
+            <div class="account-box">
+                <span>신부 오현정 (KB국민)</span>
+                <span class="account-num">01012345678</span>
+                <button class="copy-btn" onclick="copyText('01012345678')">복사하기</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 방명록 -->
+    <div class="section">
+        <h2 class="section-title">Guestbook</h2>
+        <form class="guestbook-form" onsubmit="event.preventDefault(); alert('소중한 축하 메시지 감사합니다!');">
+            <input type="text" placeholder="Name">
+            <input type="text" placeholder="Message to the Fellowship">
+            <button class="guestbook-btn">Send Message</button>
+        </form>
+        <div class="guestbook-list">
+            <div class="guest-item">
+                <div class="guest-name">간달프</div>
+                <div class="guest-msg">이 결혼식은 예정된 시간보다 늦지도, 빠르지도 않게 정확한 시간에 시작될 것이네. 축하하네!</div>
+            </div>
+            <div class="guest-item">
+                <div class="guest-name">아라곤</div>
+                <div class="guest-msg">나의 검은 당신들의 행복을 위해. 축하합니다.</div>
+            </div>
+        </div>
+    </div>
+
+    <footer style="padding: 20px; text-align: center; color: #888; font-size: 0.8rem;">
+        © 2026 The Wedding of Seyoung & Hyunjunge
+    </footer>
+</div>
+
+<script>
+    /**
+     * [Class] WeddingManager
+     * 웨딩 청첩장의 주요 기능(타이머, UI 상호작용)을 관리하는 클래스입니다.
+     */
+    class WeddingManager {
+        constructor() {
+            // 결혼식 날짜 설정 (2026년 10월 10일 11시)
+            this.weddingDate = new Date('2026-10-10T11:00:00');
+            this.timerInterval = null;
+        }
+
+        /**
+         * [Method] init
+         * 페이지 로드 시 실행되는 초기화 메서드입니다.
+         * 실행 순서: 1
+         */
+        init() {
+            this.startTimer();
+            console.log("Wedding Manager Initialized - Theme: LotR");
+        }
+
+        /**
+         * [Method] calculateTime
+         * 남은 시간을 계산하여 반환합니다.
+         * 날짜가 지났을 경우 모두 0을 반환합니다.
+         */
+        calculateTime() {
+            const now = new Date().getTime();
+            const distance = this.weddingDate.getTime() - now;
+
+            if (distance < 0) {
+                // 이미 지난 날짜인 경우
+                return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+            }
+
+            return {
+                days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+                hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+                minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+                seconds: Math.floor((distance % (1000 * 60)) / 1000)
+            };
+        }
+
+        /**
+         * [Method] updateTimerUI
+         * 계산된 시간을 DOM에 반영합니다.
+         */
+        updateTimerUI() {
+            const timeData = this.calculateTime();
+            // 요소가 존재하는지 확인 후 업데이트 (안전성 확보)
+            if(document.getElementById('days')) {
+                document.getElementById('days').innerText = String(timeData.days).padStart(2, '0');
+                document.getElementById('hours').innerText = String(timeData.hours).padStart(2, '0');
+                document.getElementById('minutes').innerText = String(timeData.minutes).padStart(2, '0');
+                document.getElementById('seconds').innerText = String(timeData.seconds).padStart(2, '0');
+            }
+        }
+
+        /**
+         * [Method] startTimer
+         * 1초마다 타이머를 업데이트합니다.
+         * 실행 순서: 2
+         */
+        startTimer() {
+            this.updateTimerUI();
+            this.timerInterval = setInterval(() => this.updateTimerUI(), 1000);
+        }
+    }
+
+    /**
+     * [Feature] 전역 함수: 연락처 토글 기능
+     * 클릭 시 해당 ID의 요소를 열거나 닫습니다.
+     */
+    function toggleContact(elementId) {
+        const el = document.getElementById(elementId);
+        if (el.style.display === 'block') {
+            el.style.display = 'none';
+        } else {
+            el.style.display = 'block';
+        }
+    }
+
+    /**
+     * [Feature] 전역 함수: 텍스트 복사
+     * 계좌번호 등을 클립보드에 복사합니다.
+     */
+    function copyText(text) {
+        navigator.clipboard.writeText(text).then(() => {
+            alert('복사되었습니다: ' + text);
+        }).catch(err => {
+            console.error('복사 실패:', err);
+        });
+    }
+
+    /**
+     * [Execution Order]
+     * 1. DOM 컨텐츠가 로드됩니다.
+     * 2. WeddingManager 인스턴스가 생성됩니다.
+     * 3. manager.init()이 호출되어 타이머가 시작됩니다.
+     */
+    document.addEventListener('DOMContentLoaded', () => {
+        const manager = new WeddingManager();
+        manager.init();
+    });
+</script>
+
+</body>
+</html>

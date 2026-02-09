@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Jurassic Wedding</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        .gate-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            cursor: pointer;
+        }
+
+        .gate {
+            position: absolute;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            background-repeat: no-repeat;
+            background-size: 200% 100%; /* 이미지를 2배 크기로 늘려서 절반씩 보여줌 */
+            transition: transform 2.5s ease-in-out;
+            z-index: 10;
+        }
+
+        .gate-left {
+            left: 0;
+            background-image: url('./weddingIMG/gate_bg4.png');
+            background-position: left center;
+            transform-origin: left;
+        }
+
+        .gate-right {
+            right: 0;
+            background-image: url('./weddingIMG/gate_bg4.png');
+            background-position: right center;
+            transform-origin: right;
+        }
+
+        /* 문이 열릴 때의 클래스 */
+        .gate-open .gate-left {
+            transform: perspective(1000px) rotateY(15deg) translateX(-100%);
+        }
+
+        .gate-open .gate-right {
+            transform: perspective(1000px) rotateY(-15deg) translateX(100%);
+        }
+
+        /* 클릭 유도 메시지 */
+        .click-guide {
+            width: 80%;
+            position: absolute;
+            top: 8%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 20;
+            text-align: center;
+            color: #ffffff;
+            font-family: 'Oswald', sans-serif;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            animation: pulse 1.5s infinite;
+            pointer-events: none; /* 클릭 통과 */
+        }
+
+        .click-guide h1 {
+            font-size: 2rem;
+            margin: 0;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+            border-radius: 10px;
+            border: 2px solid #ffffff;
+        }
+
+        @keyframes pulse {
+            0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+            50% { transform: translate(-50%, -50%) scale(1.05); opacity: 0.8; }
+            100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        }
+
+        /* 배경 (문이 열리면 보이는 뒷배경) - 선택사항 */
+        .background-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('./weddingIMG/gate_bg3.png'); /* 정글 배경 */
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="background-content">
+        <!-- 문이 열리면 잠시 보일 배경 -->
+    </div>
+
+    <div class="gate-container" id="gateContainer">
+        <div class="gate gate-left"></div>
+        <div class="gate gate-right"></div>
+        
+        <div class="click-guide" id="clickGuide">
+            <h1>Touch to Open</h1>
+        </div>
+    </div>
+
+    <script>
+        const gateContainer = document.getElementById('gateContainer');
+        const clickGuide = document.getElementById('clickGuide');
+
+        gateContainer.addEventListener('click', () => {
+            // 이미 열려있으면 무시
+            if (gateContainer.classList.contains('gate-open')) return;
+
+            // 문 열기 클래스 추가
+            gateContainer.classList.add('gate-open');
+            
+            // 가이드 텍스트 숨기기
+            clickGuide.style.display = 'none';
+
+            // 2.5초 후 페이지 이동 (애니메이션 시간 고려)
+            setTimeout(() => {
+                window.location.href = 'wedding2.html';
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
