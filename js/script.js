@@ -55,13 +55,17 @@ const NavigationManager = {
         // Smooth scroll for navigation links
         navLinks.forEach(link => {
             link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const targetId = link.getAttribute('href');
-                const targetSection = document.querySelector(targetId);
+                const targetHref = link.getAttribute('href');
                 
-                if (targetSection) {
-                    this.smoothScrollTo(targetSection);
-                    this.closeMobileMenu();
+                // 내부 링크(#)일 경우에만 스크롤 이동 처리
+                if (targetHref && targetHref.startsWith('#')) {
+                    e.preventDefault();
+                    const targetSection = document.querySelector(targetHref);
+                    
+                    if (targetSection) {
+                        this.smoothScrollTo(targetSection);
+                        this.closeMobileMenu();
+                    }
                 }
             });
         });
