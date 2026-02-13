@@ -102,14 +102,24 @@ const NavigationManager = {
         navbar.classList.toggle('scrolled', scrolled);
     },
 
+    /**
+     * 스크롤 위치에 따라 현재 보이는 섹션에 해당하는 네비게이션 링크에 active 클래스를 부여한다.
+     * 스크롤 이벤트에서 호출되며, 어떤 섹션이 뷰포트에 있는지 판단해 해당 nav-link에만 active를 유지한다.
+     */
     updateActiveNavLink() {
-        const scrollPosition = window.pageYOffset + navbar.offsetHeight + 100;
+        // 현재 스크롤 기준 "기준선" 위치. (페이지 최상단부터의 거리 + 네비바 높이 + 여유 100px)
+        const scrollPosition = window.pageYOffset + navbar.offsetHeight + 150;
 
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
             const sectionHeight = section.offsetHeight;
             const sectionId = section.getAttribute('id');
+            console.log(sectionId);
+            console.log(scrollPosition);
+            console.log(sectionTop);
+            console.log(sectionHeight);
 
+            // 기준선이 이 섹션의 구간 [sectionTop, sectionTop + sectionHeight) 안에 있으면 이 섹션이 "현재 섹션"
             if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
                 navLinks.forEach(link => {
                     link.classList.remove('active');
@@ -250,6 +260,7 @@ const ProjectInteractions = {
 const ContactEnhancement = {
     init() {
         this.addContactInteractions();
+        this.addCopyEmailFunctionality();
     },
 
     addContactInteractions() {
@@ -257,6 +268,9 @@ const ContactEnhancement = {
         
         socialLinks.forEach(link => {
             link.addEventListener('click', function(e) {
+                // Don't add ripple if it's the copy button (handled separately)
+                if (this.classList.contains('copy-email-btn')) return;
+
                 // Add ripple effect
                 const ripple = document.createElement('span');
                 ripple.classList.add('ripple');
@@ -266,6 +280,39 @@ const ContactEnhancement = {
                     ripple.remove();
                 }, 600);
             });
+        });
+    },
+
+    addCopyEmailFunctionality() {
+        const copyBtn = document.querySelector('.copy-email-btn');
+        if (!copyBtn) return;
+
+        copyBtn.addEventListener('click', async (e) => {
+            e.preventDefault();
+            const email = copyBtn.getAttribute('data-email');
+            const hintSpan = copyBtn.querySelector('.copy-hint');
+            const originalHint = '(Click to Copy)';
+            
+            try {
+                await navigator.clipboard.writeText(email);
+                
+                // Success feedback
+                copyBtn.style.background = 'var(--success-color)';
+                copyBtn.style.color = '#fff';
+                copyBtn.style.borderColor = 'var(--success-color)';
+                if (hintSpan) hintSpan.textContent = ' (Copied!)';
+                
+                // Revert after 2 seconds
+                setTimeout(() => {
+                    copyBtn.style.background = '';
+                    copyBtn.style.color = '';
+                    copyBtn.style.borderColor = '';
+                    if (hintSpan) hintSpan.textContent = originalHint;
+                }, 2000);
+            } catch (err) {
+                console.error('Failed to copy text: ', err);
+                alert('이메일 복사에 실패했습니다: ' + email);
+            }
         });
     }
 };
