@@ -254,6 +254,38 @@
             margin-bottom: 12px;
         }
 
+        .highlight-list {
+            list-style-type: disc;
+            padding-left: 22px;
+            font-size: 0.98rem;
+        }
+
+        .highlight-list li {
+            margin-bottom: 8px;
+        }
+
+        .troubleshoot-item {
+            margin-bottom: 16px;
+            padding-left: 15px;
+            border-left: 3px solid var(--border-color);
+        }
+
+        .troubleshoot-title {
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: var(--primary-color);
+        }
+
+        .order-list {
+            list-style-type: decimal;
+            padding-left: 22px;
+            font-size: 0.95rem;
+        }
+
+        .order-list li {
+            margin-bottom: 5px;
+        }
+
         @media print {
             body {
                 background: none;
@@ -277,7 +309,7 @@
     <div class="container">
         <header>
             <h1 style="font-size: 3rem;">황교진</h1>
-            <div class="job-title">Backend Developer <p style="display: inline-block; font-style: oblique;">&&nbsp;</p> DevOps Engineer</div>
+            <div class="job-title">Full-Stack Developer <p style="display: inline-block; font-style: oblique;">&&nbsp;</p> DevOps Engineer</div>
             <div class="contact-info">
                 <span class="contact-label">Email</span>
                 <span class="contact-value"><a href="https://mail.google.com/mail" target="_blank">sendjin@gmail.com</a></span>
@@ -293,8 +325,8 @@
         <section>
             <h2>About Me</h2>
             <div class="intro-text">
-                <p style="font-weight: 700; font-size: 1.2rem; margin-bottom: -20px;">현장 중심의 비즈니스 가치를 높이는 DevOps 엔지니어 황교진입니다.</p>
-백엔드 및 인프라 운영 전반을 아우르는 2년 이상의 엔지니어링 경험과, 100여 명 규모의 사내 IT 환경을 총괄 관리하며 쌓은 실무 노하우를 가지고 있으며, 단순한 시스템 유지를 넘어, 경영 관리 관점에서 효율적인 IT 환경을 구축하는 데 집중하였습니다.
+                <p style="font-weight: 700; font-size: 1.2rem; margin-bottom: -20px;">현장 중심의 비즈니스 가치를 높이는 풀스택 개발자 황교진입니다.</p>
+프론트엔드, 백엔드, 인프라 운영 전반을 아우르는 2년 이상의 엔지니어링 경험과, 100여 명 규모의 사내 IT 환경을 총괄 관리하며 쌓은 실무 노하우를 가지고 있으며, 단순한 시스템 유지를 넘어, 경영 관리 관점에서 효율적인 IT 환경을 구축하는 데 집중하였습니다.
 
 <p style="font-weight: 700; display: inline-block; margin-bottom: -20px;">첫째로, 엔드포인트 디바이스 관리 및 온사이트/원격 트러블슈팅을 주도했습니다.</p>
 100여 명의 인원이 상주하는 환경에서 시설 및 IT 인프라 총괄 관리를 수행하며, Windows 및 Linux 기반의 OS 소프트웨어 업데이트와 시스템 최적화를 진행한 경험이 있으며, 데스크탑, 랩탑 등 다양한 하드웨어 및 소프트웨어에서 발생하는 이슈를 온사이트에서 빠르게 해결하는 업무를 리드했습니다.</p>
@@ -307,12 +339,47 @@
             </div>
         </section>
 
+        <!-- Feature: 채용 담당자용 핵심 요약 -->
+        <section>
+            <h2>Core Highlights</h2>
+            <ul class="highlight-list">
+                <li>10만 이용자 규모를 고려한 풀스택 아키텍처 설계 및 Spring 기반 서비스 운영 경험</li>
+                <li>AWS 기반 인프라 구축/운영 및 레거시 시스템 마이그레이션을 통한 서비스 안정화</li>
+                <li>나라장터 데이터 자동화 시스템 구축으로 사내 영업/기획 업무 시간 80% 단축</li>
+            </ul>
+        </section>
+
+        <!-- Feature: 문제 해결 역량(트러블슈팅) -->
+        <section>
+            <h2>Troubleshooting Cases</h2>
+
+            <div class="troubleshoot-item">
+                <div class="troubleshoot-title">LMS 인프라 보안 심사 대응</div>
+                <!-- Run Order: Situation -> Action -> Result -->
+                <ol class="order-list">
+                    <li><strong>Situation:</strong> 공공기관 보안 가이드라인 준수가 필요한 환경에서 기존 서버 구조가 심사 기준을 충족하지 못하는 리스크가 존재</li>
+                    <li><strong>Action:</strong> VPC/Subnet/Security Group 구조를 재설계하고 접근 정책을 최소 권한 기준으로 정비</li>
+                    <li><strong>Result:</strong> 보안 심사 요건을 충족하고 교육 플랫폼 운영 안정성을 확보</li>
+                </ol>
+            </div>
+
+            <div class="troubleshoot-item">
+                <div class="troubleshoot-title">공공 데이터 수집 업무 병목 개선</div>
+                <!-- Run Order: Situation -> Action -> Result -->
+                <ol class="order-list">
+                    <li><strong>Situation:</strong> 분산된 공고 데이터를 수작업으로 확인하면서 영업/기획팀의 반복 업무가 과다 발생</li>
+                    <li><strong>Action:</strong> 수집/분석 자동화 파이프라인과 관리자 대시보드를 구축해 조회 과정을 표준화</li>
+                    <li><strong>Result:</strong> 데이터 접근성과 추적성이 향상되고 실무 작업 시간을 80% 단축</li>
+                </ol>
+            </div>
+        </section>
+
         <section>
             <h2>Skills</h2>
             
             <div class="skill-group-title">Proficient</div>
             <div class="skills-grid">
-                <div class="skill-category">Backend</div>
+                <div class="skill-category">Full-Stack (Core)</div>
                 <div class="skill-list">Java 17, Spring Boot, Spring Security, JPA/Hibernate, RESTful API, JWT</div>
             </div>
             <div class="skills-grid">
@@ -329,7 +396,7 @@
             </div>
             <div class="skill-group-title">Familiar</div>
             <div class="skills-grid">
-                <div class="skill-category">Backend</div>
+                <div class="skill-category">Full-Stack (Extended)</div>
                 <div class="skill-list">Python(Django), Node.js(Express), MyBatis</div>
             </div>
             <div class="skills-grid">
@@ -357,17 +424,17 @@
 
                 <div style="margin-bottom: 25px; font-size: 0.95rem; line-height: 1.6; color: var(--text-color);">
                     <strong>[직무 요약]</strong><br>
-                    교육 플랫폼의 백엔드 시스템 설계 및 운영을 주도하며, AWS 기반의 클라우드 인프라 최적화와 CI/CD 자동화를 통해 서비스 안정성을 확보했습니다. LMS(학습관리시스템) 및 사내 운영 도구 개발을 통해 운영 효율성을 80% 이상 개선하고, 트래픽 급증에 유연하게 대응하는 아키텍처를 구축했습니다.
+                    교육 플랫폼의 풀스택 시스템 설계 및 운영을 주도하며, AWS 기반의 클라우드 인프라 최적화와 CI/CD 자동화를 통해 서비스 안정성을 확보했습니다. LMS(학습관리시스템) 및 사내 운영 도구를 프론트엔드-백엔드 통합 관점으로 개발하여 운영 효율성을 80% 이상 개선하고, 트래픽 급증에 유연하게 대응하는 아키텍처를 구축했습니다.
                 </div>
                 
                 <div style="margin-bottom: 40px;">
                     <div style="font-weight: 700; margin-bottom: 10px; color: var(--primary-color);">[주요 상세 업무 & 성과]</div>
                     
                     <div style="margin-bottom: 15px;">
-                        <div style="font-weight: 600; margin-bottom: 5px; color: var(--secondary-color);">● (Backend) 대규모 트래픽 대응 아키텍처 및 API 개발</div>
+                        <div style="font-weight: 600; margin-bottom: 5px; color: var(--secondary-color);">● (Full-Stack) 대규모 트래픽 대응 서비스 및 API 개발</div>
                         <ul class="achievement-list">
-                            <li>10만 이용자 수를 유연하게 대응하는 확장 가능한 백엔드 시스템 설계 및 운영</li>
-                            <li>온라인 코딩 테스트 및 동영상 학습 진도율 추적을 위한 RESTful API 설계 및 고도화</li>
+                            <li>10만 이용자 수를 유연하게 대응하는 확장 가능한 백엔드드 시스템 설계 및 운영</li>
+                            <li>온라인 코딩 테스트 및 동영상 학습 진도율 추적을 위한 사용자 뷰(React)와 RESTful API를 통합 설계 및 고도화</li>
                             <li>Spring Security + JWT 기반의 인증/인가 시스템 구축으로 사용자 데이터 보안성 강화</li>
                         </ul>
                     </div>
@@ -422,7 +489,7 @@
                             <div style="display: flex; align-items: flex-start;">
                                 <strong style="white-space: nowrap; margin-right: 5px;">성과:</strong>
                                 <div>
-                                    <div style="margin-bottom: 3px;">코드 실행 및 채점 엔진과 연동되는 안정적인 백엔드 API 서버 구축.</div>
+                                    <div style="margin-bottom: 3px;">코드 실행 및 채점 엔진과 연동되는 안정적인 풀스택 서비스 구조(화면/API) 구축.</div>
                                     <div>사용자의 영상 학습 구간 및 진도율을 초 단위로 기록/분석하는 로직을 구현하여 학습 데이터 정합성 확보.</div>
                                 </div>
                             </div>
@@ -570,19 +637,32 @@
             </div>
         </section>
 
+        <!-- Feature: Certifications 섹션 -->
+        <!-- Display Order: Professional Training -> Certifications -> Education -->
+        <section>
+            <h2>Certifications</h2>
+            <div class="simple-list-item">
+                <div>
+                    <strong>SQLD (SQL 개발자)</strong>
+                    <span class="sub-text">한국데이터산업진흥원</span>
+                </div>
+                <span>2026.03</span>
+            </div>
+        </section>
+
         <section>
             <h2>Education</h2>
             <div class="simple-list-item">
                 <div>
                     <strong>국가평생교육진흥원 (학점은행제)</strong>
-                    <span class="sub-text">컴퓨터 공학 "학사" 재학중</span>
+                    <span class="sub-text">컴퓨터공학 학사 과정 재학 중</span>
                 </div>
                 <span>2026.02 - </span>
             </div>
              <div class="simple-list-item">
                 <div>
                     <strong>국가평생교육진흥원 (학점은행제)</strong>
-                    <span class="sub-text">경찰행정학 "전문학사" 졸업</span>
+                    <span class="sub-text">경찰행정학 전문학사 졸업</span>
                 </div>
                 <span>2012.03 - 2016.02</span>
             </div>
