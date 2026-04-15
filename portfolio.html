@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>황교진 - 프로페셔널 포트폴리오</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* 1. 기본 설정 및 색상 변수 */
+        :root {
+            --teal: #0B5351;     /* 깊은 청록 */
+            --cream: #FAF9F6;    /* 크림 */
+            --orange: #E07A5F;   /* 따뜻한 오렌지 */
+            --grey: #36454F;     /* 차콜 그레이 */
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        p {
+            margin: 0;
+            margin-bottom: 15px;
+        }
+
+        body {
+            background-color: #222b31; /* 전체 배경은 더 어두운 톤으로 하여 슬라이드를 돋보이게 함 */
+            display: grid;
+            gap: 40px;
+            grid-template-columns: 1fr;
+            margin: 0;
+            min-height: 100vh;
+            padding: 40px 20px;
+            place-items: center;
+        }
+
+        /* 슬라이드 컨테이너 (PPT 느낌) */
+        .slide-container {
+            align-items: center;
+            background-color: var(--cream);
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            font-family: 'Noto Sans KR', sans-serif;
+            height: 720px; /* 16:9 비율 유지 */
+            justify-content: center;
+            overflow: hidden;
+            padding: 60px;
+            position: relative;
+            width: 100%;
+            max-width: 1280px;
+        }
+
+        .slide-container > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* --- 기하학적 배경 디자인 --- */
+        
+        /* 공통 상단 그라데이션 포인트 바 */
+        .slide-container::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--teal) 0%, var(--grey) 50%, var(--orange) 100%);
+            z-index: 10;
+        }
+
+        /* 밝은 테마 배경 (크림 기반, 구조적 느낌) */
+        .bg-design-light {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: var(--cream);
+            overflow: hidden;
+            z-index: 0;
+        }
+        
+        /* 사선 분할 효과 */
+        .bg-design-light::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 55%;
+            background: linear-gradient(to right, transparent, rgba(54, 69, 79, 0.05));
+            transform: skewX(-25deg);
+            transform-origin: top;
+        }
+        
+        /* 엔지니어링 도트 매트릭스 포인트 */
+        .bg-design-light::after {
+            content: '';
+            position: absolute;
+            bottom: 40px; right: 40px;
+            width: 140px; height: 140px;
+            background-image: radial-gradient(var(--orange) 1.5px, transparent 1.5px);
+            background-size: 20px 20px;
+            opacity: 0.25;
+        }
+
+        /* 어두운 테마 배경 (깊은 청록 기반, 테크 그리드 느낌) */
+        .bg-design-dark {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: var(--teal);
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        /* 어두운 사선 기하학 도형 */
+        .bg-design-dark::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -20%; right: 40%; bottom: 0;
+            background: var(--grey);
+            opacity: 0.4;
+            transform: skewX(-25deg);
+            transform-origin: bottom;
+        }
+
+        /* 테크 그리드 오버레이 */
+        .bg-design-dark::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: 
+                linear-gradient(rgba(250, 249, 246, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(250, 249, 246, 0.04) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: 0;
+        }
+
+        /* 어두운 테마용 오렌지색 사선 포인트 라인 */
+        .dark-accent-line {
+            position: absolute;
+            bottom: 15%; right: -5%;
+            width: 50%; height: 2px;
+            background: var(--orange);
+            transform: rotate(-25deg);
+            z-index: 1;
+            opacity: 0.9;
+            box-shadow: 0 0 15px rgba(224, 122, 95, 0.6);
+        }
+
+        /* 2. 타이포그래피 */
+        .slide-container h1,
+        .slide-container h2,
+        .slide-container h3 {
+            color: var(--teal);
+            font-weight: 700;
+            font-family: 'Poppins', 'Noto Sans KR', sans-serif;
+            margin: 0;
+        }
+
+        .slide-container p,
+        .slide-container li,
+        .slide-container .subtitle,
+        .slide-container .number-label {
+            color: var(--grey);
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        .slide-container h1 { font-size: 70px; line-height: 1.2; letter-spacing: -1px; }
+        .slide-container .slide-title { font-size: 40px; font-weight: 700; margin-bottom: 40px; text-align: left; width: 100%; position: relative; display: inline-block; }
+        .slide-container .slide-title::after {
+            content: ''; position: absolute; left: 0; bottom: -10px; width: 60px; height: 4px; background-color: var(--orange);
+        }
+        .slide-container h3 { font-size: 28px; font-weight: 700; margin-bottom: 15px; }
+        
+        .slide-container p,
+        .slide-container li,
+        .slide-container .subtitle { font-size: 17px; line-height: 1.6; }
+        
+        .slide-container .subtitle { font-weight: 400; margin: 20px auto; font-size: 24px; color: var(--grey); }
+
+        .slide-container.dark { background-color: var(--teal); }
+        .slide-container.dark h1,
+        .slide-container.dark h2,
+        .slide-container.dark h3,
+        .slide-container.dark p,
+        .slide-container.dark .subtitle,
+        .slide-container.dark li { color: var(--cream); }
+
+        .accent { color: var(--orange) !important; }
+
+        .slide-container .content-area {
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: center;
+            width: 100%;
+        }
+
+        /* 3. 레이아웃 정의 */
+        .title-layout { text-align: center; }
+
+        .two-column {
+            align-items: center;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 60px;
+            width: 100%;
+        }
+
+        .two-column.tiled { grid-template-columns: 1fr 1fr; align-items: stretch; }
+        .two-column.tiled > div {
+            background-color: var(--teal);
+            border-radius: 12px;
+            padding: 40px;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        /* 어두운 타일 우측 상단 사선 포인트 */
+        .two-column.tiled > div::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0;
+            width: 0; height: 0;
+            border-top: 40px solid var(--orange);
+            border-left: 40px solid transparent;
+            opacity: 0.9;
+        }
+
+        .two-column.tiled h3 { color: var(--orange); }
+        .two-column.tiled p { color: var(--cream); }
+        .two-column.tiled strong { color: var(--orange); }
+
+        .image-wrapper {
+            border-radius: 12px;
+            height: 380px;
+            max-width: 100%;
+            overflow: hidden;
+            width: 100%;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            position: relative;
+        }
+        /* 이미지 위 오버레이 처리 */
+        .image-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to bottom, rgba(11, 83, 81, 0) 50%, rgba(11, 83, 81, 0.4) 100%);
+            pointer-events: none;
+        }
+        .image-wrapper img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .tiled-content {
+            align-items: stretch;
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .tile {
+            align-items: flex-start;
+            background-color: #ffffff;
+            border-radius: 12px;
+            border: 1px solid rgba(54, 69, 79, 0.1);
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            justify-content: flex-start;
+            padding: 40px 30px;
+            text-align: left;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.04);
+            border-top: 5px solid var(--teal);
+            transition: transform 0.3s ease;
+        }
+        .tile:hover {
+            transform: translateY(-5px);
+        }
+        .tile .icon { 
+            color: var(--orange); 
+            font-size: 42px; 
+            margin-bottom: 25px; 
+            background: rgba(224, 122, 95, 0.1);
+            width: 80px; height: 80px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%;
+        }
+
+        .bullet-list { width: 100%; }
+        .bullet-list ul { list-style: none; margin: 0; padding: 0; }
+        .bullet-list li { margin-bottom: 30px; padding-left: 45px; position: relative; }
+        .bullet-list i { color: var(--orange); font-size: 20px; left: 0; margin-top: 3px; position: absolute; text-align: center; top: 0; }
+        .bullet-list li strong { color: var(--teal); font-weight: 700; display: block; margin-bottom: 5px; font-size: 19px; }
+
+        .image-tile { flex: 1; text-align: left; display: flex; flex-direction: column; }
+        .image-tile .image-wrapper { height: 200px; margin-bottom: 25px; box-shadow: 0 8px 16px rgba(0,0,0,0.1); }
+        .image-tile h3 { font-size: 22px; margin-bottom: 15px; }
+
+        .highlight-numbers-layout > div:first-child { flex: 0 0 40%; text-align: center; display: flex; flex-direction: column; justify-content: center; gap: 50px; }
+        .highlight-numbers-layout .number {
+            color: var(--orange);
+            font-size: 80px;
+            font-weight: 700;
+            font-family: 'Poppins', sans-serif;
+            line-height: 1;
+            text-shadow: 2px 2px 0px rgba(224, 122, 95, 0.2);
+        }
+        .highlight-numbers-layout .number-label { font-size: 20px; font-weight: 700; color: var(--teal); margin-top: 10px; letter-spacing: 1px; text-transform: uppercase; }
+
+        .section-title-layout {
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            justify-content: center;
+            text-align: center;
+            width: 100%;
+        }
+        .section-title-layout h2 { font-size: 65px; margin-bottom: 20px; text-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        .section-title-layout p { font-size: 24px; margin: 0 auto; max-width: 700px; opacity: 0.9; }
+        .section-title-layout hr { background-color: var(--orange); border: none; height: 6px; margin: 30px auto; width: 80px; }
+
+        .timeline-layout {
+            align-items: stretch;
+            display: flex;
+            height: 100%;
+            justify-content: space-between;
+            position: relative;
+            width: 100%;
+            padding-top: 150px;
+        }
+        .timeline-layout .timeline-line {
+            background-color: var(--teal);
+            opacity: 0.2;
+            height: 4px;
+            left: 0;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-2px);
+            width: 100%;
+            z-index: 0;
+        }
+        .timeline-item { position: relative; text-align: center; width: 23%; }
+        .timeline-item::after {
+            background-color: var(--cream);
+            border-radius: 50%;
+            border: 5px solid var(--teal);
+            content: '';
+            height: 24px;
+            left: 50%;
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 24px;
+            z-index: 1;
+            box-shadow: 0 0 0 4px rgba(11, 83, 81, 0.1);
+        }
+        .timeline-item:hover::after { border-color: var(--orange); }
+        .timeline-item .content-wrapper { left: 0; position: absolute; width: 100%; padding: 0 10px; }
+        .timeline-item:nth-child(odd) .content-wrapper { bottom: 50%; margin-bottom: 40px; }
+        .timeline-item:nth-child(even) .content-wrapper { margin-top: 40px; top: 50%; }
+        .timeline-item h3 { color: var(--orange); font-size: 28px; font-family: 'Poppins', sans-serif; margin-bottom: 10px; }
+        .timeline-item .title-text { font-weight: 700; color: var(--teal); margin-bottom: 10px; font-size: 18px; }
+        .timeline-item .desc-text { font-size: 15px; line-height: 1.5; color: var(--grey); }
+
+        .qa-layout { margin: 0 auto; text-align: center; width: 100%; align-self: center; }
+        .qa-layout h2 { font-size: 80px; margin-bottom: 20px; }
+        .qa-layout p { font-size: 24px; opacity: 0.9; }
+        .qa-layout .contact-info {
+            background: rgba(250, 249, 246, 0.05);
+            border: 1px solid rgba(250, 249, 246, 0.1);
+            border-radius: 12px;
+            color: var(--cream);
+            display: inline-block;
+            font-size: 20px;
+            margin-top: 50px;
+            padding: 30px 50px;
+            line-height: 2.2;
+            text-align: left;
+            backdrop-filter: blur(5px);
+        }
+        .contact-info i { color: var(--orange); width: 35px; text-align: center; }
+    </style>
+</head>
+<body>
+
+<!-- Slide 1: Title Slide (크림색 배경, 기하학적 디자인) -->
+<div class="slide-container" id="slide1">
+    <div class="bg-design-light"></div>
+    <div class="title-layout">
+        <h1>황교진<br><span class="accent">Full-Stack & DevOps</span></h1>
+        <p class="subtitle">현장 중심의 비즈니스 가치를 높이는 IT 엔지니어</p>
+    </div>
+</div>
+
+<!-- Slide 2: About Me -->
+<div class="slide-container" id="slide2">
+    <div class="bg-design-light"></div>
+    <h2 class="slide-title">About Me</h2>
+    <div class="content-area">
+        <div class="two-column">
+            <div class="bullet-list">
+                <ul>
+                    <li>
+                        <i class="fa-solid fa-server"></i> 
+                        <strong>엔드포인트 및 인프라 총괄</strong> 
+                        100여 명 규모의 사내 IT 환경 관리, OS 업데이트 최적화 및 온사이트/원격 트러블슈팅을 주도하여 안정적인 업무 환경을 조성했습니다.
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-network-wired"></i> 
+                        <strong>유/무선 네트워크 구축 및 서버 운영</strong> 
+                        사내 LAN 망 초기 설계부터 대규모 레거시 시스템의 AWS 클라우드 마이그레이션까지, 확장 가능하고 안전한 인프라를 성공적으로 구축했습니다.
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-users-gear"></i> 
+                        <strong>탁월한 커뮤니케이션 스킬</strong> 
+                        다양한 고객 접점 직무를 거치며 체득한 서비스 마인드로, 복잡한 IT 이슈를 명확하게 전달하고 비개발자 대상 기술 강의를 이끌어가는 소통 역량을 갖추었습니다.
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <div class="image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80" alt="Professional software engineer desk with laptop and code">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 3: Core Highlights -->
+<div class="slide-container" id="slide3">
+    <div class="bg-design-light"></div>
+    <h2 class="slide-title">Core Highlights</h2>
+    <div class="content-area">
+        <div class="two-column highlight-numbers-layout">
+            <div>
+                <div>
+                    <div class="number">100k+</div>
+                    <div class="number-label">Active Users Architecture</div>
+                </div>
+                <div>
+                    <div class="number">80%</div>
+                    <div class="number-label">Time Saved via Automation</div>
+                </div>
+            </div>
+            <div style="display: flex; flex-direction: column; justify-content: center;">
+                <h3 style="color: var(--teal); font-size: 30px;">대규모 트래픽 및 업무 자동화</h3>
+                <br>
+                <p style="margin-bottom: 25px;"><strong>10만 이용자 규모</strong>를 고려한 풀스택 아키텍처를 설계하고 Spring 기반 서비스를 성공적으로 운영하며 확장성을 입증하였습니다.</p>
+                <p style="margin-bottom: 25px;">기존 레거시 시스템의 <strong>AWS 클라우드 마이그레이션</strong>을 주도하여 서비스 안정성을 극대화하였으며, 인프라 비용을 최적화했습니다.</p>
+                <p>나라장터 공공 데이터 수집 자동화 시스템을 독자적으로 구축하여 사내 영업 및 기획 부서의 반복 업무 시간을 <strong>80% 이상 단축</strong>시키는 실질적인 비즈니스 가치를 창출했습니다.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 4: Troubleshooting Cases -->
+<div class="slide-container" id="slide4">
+    <div class="bg-design-light"></div>
+    <h2 class="slide-title">Troubleshooting Cases</h2>
+    <div class="content-area">
+        <div class="two-column tiled">
+            <div>
+                <h3>LMS 인프라 보안 심사 대응</h3>
+                <br>
+                <p style="margin-bottom: 20px;"><strong>Situation:</strong> 공공기관 보안 가이드라인 준수가 필수적인 환경에서 기존 분산된 서버 구조가 보안 심사 기준을 충족하지 못하는 리스크가 존재했습니다.</p>
+                <p style="margin-bottom: 20px;"><strong>Action:</strong> AWS 환경에서 VPC, Subnet, Security Group 아키텍처를 전면 재설계하고 네트워크 접근 정책을 최소 권한 기준으로 엄격하게 정비하였습니다.</p>
+                <p><strong>Result:</strong> 국가 정보 보안 가이드라인 심사 요건을 완벽히 통과하며, 교육 플랫폼의 운영 안정성 및 보안성을 획기적으로 향상시켰습니다.</p>
+            </div>
+            <div>
+                <h3>공공 데이터 수집 업무 병목 개선</h3>
+                <br>
+                <p style="margin-bottom: 20px;"><strong>Situation:</strong> 산재된 공공 입찰 데이터를 수작업으로 모니터링하며 영업 및 기획팀의 소모적인 반복 업무가 과다하게 발생하고 있었습니다.</p>
+                <p style="margin-bottom: 20px;"><strong>Action:</strong> 데이터 수집, 가공 및 분석 자동화 파이프라인을 구축하고 이를 시각화하는 전용 관리자 대시보드를 풀스택으로 개발하여 배포했습니다.</p>
+                <p><strong>Result:</strong> 데이터 접근성과 추적성이 비약적으로 향상되었으며, 실무자들의 핵심 데이터 취합 시간을 기존 대비 80% 이상 단축시켰습니다.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 5: Core Skills -->
+<div class="slide-container" id="slide5">
+    <div class="bg-design-light"></div>
+    <h2 class="slide-title">Core Skills</h2>
+    <div class="content-area">
+        <div class="tiled-content">
+            <div class="tile">
+                <div class="icon"><i class="fa-solid fa-code"></i></div>
+                <h3 style="color: var(--teal);">Full-Stack</h3>
+                <p><strong>Java 17, Spring Boot, JPA</strong> 등을 활용한 견고한 백엔드 아키텍처 및 RESTful API 설계.</p>
+                <p><strong>React.js, TypeScript</strong> 기반의 직관적이고 반응형 UI/UX 프론트엔드 개발 경험.</p>
+            </div>
+            <div class="tile">
+                <div class="icon"><i class="fa-solid fa-cloud"></i></div>
+                <h3 style="color: var(--teal);">Cloud & DevOps</h3>
+                <p><strong>AWS (EC2, S3, RDS, Route53)</strong> 클라우드 인프라 설계, 마이그레이션 및 최적화 운영.</p>
+                <p><strong>Docker</strong> 컨테이너화 및 Linux 환경 관리, CI/CD 파이프라인 연동 무중단 배포.</p>
+            </div>
+            <div class="tile">
+                <div class="icon"><i class="fa-solid fa-database"></i></div>
+                <h3 style="color: var(--teal);">DB & Tools</h3>
+                <p><strong>MySQL, Redis</strong>를 활용한 효율적인 데이터베이스 모델링 및 캐싱 처리.</p>
+                <p><strong>Git, GitHub Actions, Postman</strong> 등 협업 및 개발 생산성 향상을 위한 전문 도구 활용.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 6: Work Experience Section Title -->
+<div class="slide-container dark" id="slide6">
+    <div class="bg-design-dark"></div>
+    <div class="dark-accent-line"></div>
+    <div class="section-title-layout">
+        <hr>
+        <h2>(주)천재교육</h2>
+        <p>Full-Stack Developer & DevOps Engineer (2024.02 - Present)</p>
+    </div>
+</div>
+
+<!-- Slide 7: Key Projects -->
+<div class="slide-container" id="slide7">
+    <div class="bg-design-light"></div>
+    <h2 class="slide-title">Key Projects</h2>
+    <div class="content-area">
+        <div class="tiled-content">
+            <div class="image-tile">
+                <div class="image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80" alt="Data center server racks">
+                </div>
+                <h3>LMS 인프라 구축</h3>
+                <p>국가 정보 보안 가이드라인에 맞춘 AWS VPC 및 네트워크 구성. 레거시 시스템을 클라우드로 마이그레이션하여 안정적인 서비스 유지보수를 달성했습니다.</p>
+            </div>
+            <div class="image-tile">
+                <div class="image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=600&q=80" alt="Online coding platform interface on laptop">
+                </div>
+                <h3>온라인 학습 플랫폼</h3>
+                <p>Spring Boot 및 React를 활용하여 코드 실행 및 채점 엔진과 연동되는 API를 구축하고, 초 단위 영상 진도율 트래킹 로직을 구현했습니다.</p>
+            </div>
+            <div class="image-tile">
+                <div class="image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" alt="Data analytics dashboard">
+                </div>
+                <h3>데이터 분석 대시보드</h3>
+                <p>나라장터 분산 데이터를 통합 수집/분석하는 파이프라인 및 관리자 화면을 개발하여, 사내 데이터 접근성을 획기적으로 향상시켰습니다.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 8: Career & Education Timeline -->
+<div class="slide-container" id="slide8">
+    <div class="bg-design-light"></div>
+    <h2 class="slide-title">Career & Education Journey</h2>
+    <div class="content-area">
+        <div class="timeline-layout">
+            <div class="timeline-line"></div>
+            <div class="timeline-item">
+                <div class="content-wrapper">
+                    <h3>2016 - 2021</h3>
+                    <p class="title-text">다양한 고객 접점 직무</p>
+                    <p class="desc-text">호텔 HR/총무, 금융권 CS 등을 통해 유연하고 탁월한 커뮤니케이션 및 문제 해결 스킬 확립</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="content-wrapper">
+                    <h3>2023</h3>
+                    <p class="title-text">에듀테크 Java 과정</p>
+                    <p class="desc-text">(주)천재교육 주관 풀스택 개발자 과정 수료 및 KDT 매칭, 교육 게임 플랫폼 프로젝트 진행</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="content-wrapper">
+                    <h3>2024 - Present</h3>
+                    <p class="title-text">(주)천재교육 입사</p>
+                    <p class="desc-text">Full-Stack & DevOps Engineer 재직 중. AWS Generative AI 및 DevOps 인증 과정 수료</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="content-wrapper">
+                    <h3>2026</h3>
+                    <p class="title-text">CS 학위 및 자격증</p>
+                    <p class="desc-text">학점은행제 컴퓨터공학 학사 학위 취득 예정 및 한국데이터산업진흥원 SQLD 자격증 취득 완료</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 9: Contact (어두운 테마) -->
+<div class="slide-container dark" id="slide9">
+    <div class="bg-design-dark"></div>
+    <div class="dark-accent-line"></div>
+    <div class="qa-layout">
+        <h2 class="accent">Get In Touch</h2>
+        <p>현장 중심의 비즈니스 가치를 높이는 개발자가 되겠습니다.</p>
+        <div class="contact-info">
+            <i class="fa-solid fa-envelope"></i> sendjin@gmail.com<br>
+            <i class="fa-brands fa-github"></i> github.com/sendjin5<br>
+            <i class="fa-solid fa-blog"></i> tistory.com/sendjin
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+```
