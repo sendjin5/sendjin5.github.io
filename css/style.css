@@ -1,32 +1,33 @@
 /* CSS Variables for Theme */
 :root {
-  /* Light Theme Colors */
-  --primary-color: #008b8b;
-  --primary-light: #20b2aa;
-  --primary-dark: #006666;
-  --secondary-color: #64748b;
-  --accent-color: #ff8a00;
-  --success-color: #10b981;
-  --warning-color: #f59e0b;
-  --danger-color: #ef4444;
+  /* Default Theme: Deep Teal */
+  /* Color Order: Deep Teal -> Cream -> Warm Orange -> Charcoal Grey */
+  --primary-color: #0b5351;
+  --primary-light: #1b6d6b;
+  --primary-dark: #083f3d;
+  --secondary-color: #5f6d74;
+  --accent-color: #e07a5f;
+  --success-color: #2d8b79;
+  --warning-color: #d39a3c;
+  --danger-color: #c45a51;
 
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8fafc;
-  --bg-tertiary: #f1f5f9;
-  --bg-card: #ffffff;
-  --bg-overlay: rgba(0, 0, 0, 0.1);
+  --bg-primary: #faf9f6;
+  --bg-secondary: #f4f2ec;
+  --bg-tertiary: #ece8df;
+  --bg-card: #fffdf9;
+  --bg-overlay: rgba(54, 69, 79, 0.1);
 
-  --text-primary: #0f172a;
-  --text-secondary: #475569;
-  --text-tertiary: #64748b;
-  --text-inverse: #ffffff;
+  --text-primary: #36454f;
+  --text-secondary: #53626a;
+  --text-tertiary: #6a7981;
+  --text-inverse: #faf9f6;
 
-  --border-color: #e2e8f0;
-  --border-light: #f1f5f9;
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --border-color: #d9d6ce;
+  --border-light: #e8e4db;
+  --shadow-sm: 0 1px 2px 0 rgb(54 69 79 / 0.08);
+  --shadow-md: 0 4px 8px -2px rgb(54 69 79 / 0.14);
+  --shadow-lg: 0 12px 18px -4px rgb(54 69 79 / 0.16);
+  --shadow-xl: 0 24px 30px -8px rgb(54 69 79 / 0.18);
 
   /* Typography */
   --font-primary: "Noto Sans KR", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -112,6 +113,74 @@ section {
   border-radius: 2px;
 }
 
+/* Feature: PPT 스타일 슬라이드 레이아웃 */
+/* Run Order: section snap -> section frame -> indicator */
+section[id] {
+  scroll-margin-top: 80px;
+}
+
+.slide-indicator {
+  position: fixed;
+  right: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  padding: 0.75rem 0.55rem;
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--bg-card) 88%, transparent);
+  backdrop-filter: blur(6px);
+  box-shadow: var(--shadow-md);
+}
+
+.slide-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 999px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.slide-dot:hover {
+  transform: scale(1.15);
+  border-color: var(--primary-color);
+}
+
+.slide-dot.active {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary-color) 20%, transparent);
+}
+
+/* Desktop에서 PPT 형식 스냅 적용 */
+@media (min-width: 769px) {
+  html {
+    scroll-snap-type: y mandatory;
+    scroll-padding-top: 80px;
+  }
+
+  body.ppt-portfolio section[id] {
+    min-height: 100vh;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    display: flex;
+    align-items: center;
+  }
+
+  body.ppt-portfolio section[id] .container {
+    background: color-mix(in srgb, var(--bg-card) 94%, transparent);
+    border: 1px solid var(--border-light);
+    border-radius: 22px;
+    box-shadow: var(--shadow-lg);
+    padding: 2.2rem;
+  }
+}
+
   section.contact .container {
     height: 800px
   }
@@ -157,6 +226,10 @@ section {
 
 [data-theme="dark"] .navbar {
   background: rgba(15, 23, 42, 0.95);
+}
+
+[data-theme="deep-teal"] .navbar {
+  background: rgba(250, 249, 246, 0.95);
 }
 
 .nav-container {
@@ -1357,6 +1430,10 @@ section {
     right: 1rem;
     width: 45px;
     height: 45px;
+  }
+
+  .slide-indicator {
+    display: none;
   }
 
   .hero {

@@ -8,10 +8,14 @@ const navbar = document.querySelector('.navbar');
 
 // Theme Management
 const ThemeManager = {
+    // Feature: 지원 테마 목록(다크, 딥틸만 유지)
+    themes: ['deep-teal', 'dark'],
+
     init() {
-        // Get saved theme or default to dark
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        this.setTheme(savedTheme);
+        // Run Order: 저장값 확인 -> 유효성 검증 -> 초기 테마(딥틸) 적용
+        const savedTheme = localStorage.getItem('theme') || 'deep-teal';
+        const initialTheme = this.themes.includes(savedTheme) ? savedTheme : 'deep-teal';
+        this.setTheme(initialTheme);
         this.bindEvents();
     },
 
@@ -23,16 +27,17 @@ const ThemeManager = {
 
     updateThemeIcon(theme) {
         const icon = themeToggle.querySelector('i');
-        if (theme === 'dark') {
-            icon.className = 'fas fa-sun';
-        } else {
-            icon.className = 'fas fa-moon';
-        }
+        // Run Order: 현재 테마에 따라 다음 전환 힌트 아이콘 노출
+        if (theme === 'dark') icon.className = 'fas fa-sun';
+        if (theme === 'deep-teal') icon.className = 'fas fa-moon';
     },
 
     toggleTheme() {
+        // Run Order: 현재 인덱스 조회 -> 다음 테마 계산 -> 적용
         const currentTheme = document.documentElement.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        const currentIndex = this.themes.indexOf(currentTheme);
+        const safeIndex = currentIndex === -1 ? 0 : currentIndex;
+        const newTheme = this.themes[(safeIndex + 1) % this.themes.length];
         this.setTheme(newTheme);
     },
 
@@ -114,10 +119,6 @@ const NavigationManager = {
             const sectionTop = section.offsetTop;
             const sectionHeight = section.offsetHeight;
             const sectionId = section.getAttribute('id');
-            console.log(sectionId);
-            console.log(scrollPosition);
-            console.log(sectionTop);
-            console.log(sectionHeight);
 
             // 기준선이 이 섹션의 구간 [sectionTop, sectionTop + sectionHeight) 안에 있으면 이 섹션이 "현재 섹션"
             if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
@@ -128,6 +129,109 @@ const NavigationManager = {
                     }
                 });
             }
+        });
+    }
+};
+
+// Feature: PPT 슬라이드 네비게이션 매니저
+const SlideDeckManager = {
+    init() {
+        // Run Order: 요소 조회 -> 인디케이터 렌더링 -> 이벤트 바인딩 -> 활성 슬라이드 동기화
+        this.slideSections = Array.from(document.querySelectorAll('section[id]'));
+        this.indicator = document.querySelector('.slide-indicator');
+        this.activeIndex = 0;
+        this.isDesktop = window.matchMedia('(min-width: 769px)').matches;
+
+        if (!this.indicator || this.slideSections.length === 0) return;
+        this.renderDots();
+        this.bindEvents();
+        this.syncActiveDot();
+    },
+
+    renderDots() {
+        // Run Order: 기존 인디케이터 초기화 -> 섹션 수만큼 dot 생성
+        this.indicator.innerHTML = '';
+        this.slideSections.forEach((section, index) => {
+            const dot = document.createElement('button');
+            dot.className = 'slide-dot';
+            dot.type = 'button';
+            dot.setAttribute('aria-label', `${section.id} 슬라이드로 이동`);
+            dot.dataset.slideIndex = String(index);
+            this.indicator.appendChild(dot);
+        });
+        this.dots = Array.from(this.indicator.querySelectorAll('.slide-dot'));
+    },
+
+    bindEvents() {
+        // Run Order: dot 클릭 이동 -> 키보드 이동 -> 스크롤 감지 동기화
+        this.indicator.addEventListener('click', (event) => {
+            const button = event.target.closest('.slide-dot');
+            if (!button) return;
+            const index = Number(button.dataset.slideIndex);
+            this.moveTo(index);
+        });
+
+        window.addEventListener('keydown', (event) => this.handleKeydown(event));
+        window.addEventListener('scroll', () => this.syncActiveDot(), { passive: true });
+        window.addEventListener('resize', () => {
+            this.isDesktop = window.matchMedia('(min-width: 769px)').matches;
+        });
+    },
+
+    moveTo(index) {
+        // Run Order: 범위 보정 -> 해당 섹션 스크롤 이동
+        const safeIndex = Math.max(0, Math.min(index, this.slideSections.length - 1));
+        const target = this.slideSections[safeIndex];
+        if (!target) return;
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    },
+
+    handleKeydown(event) {
+        // 입력 요소에 포커스된 상태에서는 키보드 슬라이드 이동 비활성화
+        const tagName = document.activeElement?.tagName;
+        const isInputContext = ['INPUT', 'TEXTAREA', 'SELECT'].includes(tagName);
+        if (isInputContext || !this.isDesktop) return;
+
+        // Run Order: 현재 섹션 계산 -> 방향키/Home/End 처리 -> 슬라이드 이동
+        const current = this.findNearestSectionIndex();
+        if (event.key === 'ArrowDown' || event.key === 'PageDown') {
+            event.preventDefault();
+            this.moveTo(current + 1);
+        }
+        if (event.key === 'ArrowUp' || event.key === 'PageUp') {
+            event.preventDefault();
+            this.moveTo(current - 1);
+        }
+        if (event.key === 'Home') {
+            event.preventDefault();
+            this.moveTo(0);
+        }
+        if (event.key === 'End') {
+            event.preventDefault();
+            this.moveTo(this.slideSections.length - 1);
+        }
+    },
+
+    findNearestSectionIndex() {
+        // 뷰포트 상단 기준으로 가장 가까운 섹션 인덱스를 계산
+        let nearestIndex = 0;
+        let nearestDistance = Number.POSITIVE_INFINITY;
+        this.slideSections.forEach((section, index) => {
+            const distance = Math.abs(section.getBoundingClientRect().top - 80);
+            if (distance < nearestDistance) {
+                nearestDistance = distance;
+                nearestIndex = index;
+            }
+        });
+        return nearestIndex;
+    },
+
+    syncActiveDot() {
+        this.activeIndex = this.findNearestSectionIndex();
+        this.dots?.forEach((dot, index) => {
+            const isActive = index === this.activeIndex;
+            dot.classList.toggle('active', isActive);
+            dot.setAttribute('aria-current', isActive ? 'true' : 'false');
         });
     }
 };
@@ -387,7 +491,10 @@ const AccessibilityManager = {
         // Dynamic aria-label for theme toggle
         const updateThemeToggleLabel = () => {
             const currentTheme = document.documentElement.getAttribute('data-theme');
-            const label = currentTheme === 'dark' ? '라이트 모드로 변경' : '다크 모드로 변경';
+            let label = '테마 변경';
+            // Run Order: deep-teal -> dark -> deep-teal
+            if (currentTheme === 'dark') label = '딥틸 모드로 변경';
+            if (currentTheme === 'deep-teal') label = '다크 모드로 변경';
             themeToggle.setAttribute('aria-label', label);
         };
 
@@ -488,6 +595,7 @@ document.addEventListener('DOMContentLoaded', function() {
     try {
         ThemeManager.init();
         NavigationManager.init();
+        SlideDeckManager.init();
         ScrollAnimations.init();
         TypingAnimation.init();
         SkillAnimation.init();
@@ -524,6 +632,7 @@ if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         ThemeManager,
         NavigationManager,
+        SlideDeckManager,
         ScrollAnimations,
         TypingAnimation,
         SkillAnimation,
