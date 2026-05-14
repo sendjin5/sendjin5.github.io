@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>황교진 - 프로페셔널 포트폴리오</title>
+    <title>황교진 - 포트폴리오</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
@@ -15,6 +15,7 @@
             --cream: #FAF9F6;    /* 크림 */
             --orange: #E07A5F;   /* 따뜻한 오렌지 */
             --grey: #36454F;     /* 차콜 그레이 */
+            --font-family-base: 'Poppins', 'Noto Sans KR', sans-serif;
         }
 
         * {
@@ -45,7 +46,7 @@
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
             display: flex;
             flex-direction: column;
-            font-family: 'Noto Sans KR', sans-serif;
+            font-family: var(--font-family-base);
             height: 720px; /* 16:9 비율 유지 */
             justify-content: center;
             overflow: hidden;
@@ -152,7 +153,7 @@
         .slide-container h3 {
             color: var(--teal);
             font-weight: 700;
-            font-family: 'Poppins', 'Noto Sans KR', sans-serif;
+            font-family: var(--font-family-base);
             margin: 0;
         }
 
@@ -161,7 +162,7 @@
         .slide-container .subtitle,
         .slide-container .number-label {
             color: var(--grey);
-            font-family: 'Noto Sans KR', sans-serif;
+            font-family: var(--font-family-base);
         }
 
         .slide-container h1 { font-size: 70px; line-height: 1.2; letter-spacing: -1px; }
@@ -185,7 +186,7 @@
         .slide-container.dark .subtitle,
         .slide-container.dark li { color: var(--cream); }
 
-        .accent { color: var(--orange) !important; font-size: 63px;}
+        .accent { color: var(--orange) !important; font-size: 45px;}
 
         .slide-container .content-area {
             align-items: center;
@@ -303,12 +304,78 @@
         .image-tile .image-wrapper { height: 200px; margin-bottom: 25px; box-shadow: 0 8px 16px rgba(0,0,0,0.1); }
         .image-tile h3 { font-size: 22px; margin-bottom: 15px; }
 
+        /* Feature: Key Projects 4분할 카드 레이아웃 */
+        .key-project-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 22px;
+            align-items: stretch;
+            width: 100%;
+        }
+
+        .key-project-card {
+            background: #fff;
+            border: 1px solid rgba(54, 69, 79, 0.15);
+            border-top: 5px solid var(--teal);
+            border-radius: 12px;
+            padding: 20px 22px 18px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            min-height: 205px;
+        }
+
+        .key-project-card .project-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2px;
+        }
+
+        .key-project-card .project-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(224, 122, 95, 0.12);
+            color: var(--orange);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .key-project-card .project-index {
+            font-family: var(--font-family-base);
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--teal);
+            border: 1px solid rgba(11, 83, 81, 0.25);
+            border-radius: 999px;
+            padding: 3px 9px;
+            line-height: 1;
+        }
+
+        .key-project-card h3 {
+            font-size: 21px;
+            margin: 0;
+            line-height: 1.3;
+            color: var(--teal);
+        }
+
+        .key-project-card p {
+            margin: 0;
+            font-size: 15px;
+            line-height: 1.55;
+            color: var(--grey);
+        }
+
         .highlight-numbers-layout > div:first-child { flex: 0 0 40%; text-align: center; display: flex; flex-direction: column; justify-content: center; gap: 50px; }
         .highlight-numbers-layout .number {
             color: var(--orange);
             font-size: 80px;
             font-weight: 700;
-            font-family: 'Poppins', sans-serif;
+            font-family: var(--font-family-base);
             line-height: 1;
             text-shadow: 2px 2px 0px rgba(224, 122, 95, 0.2);
         }
@@ -365,7 +432,7 @@
         .timeline-item .content-wrapper { left: 0; position: absolute; width: 100%; padding: 0 10px; }
         .timeline-item:nth-child(odd) .content-wrapper { bottom: 50%; margin-bottom: 40px; }
         .timeline-item:nth-child(even) .content-wrapper { margin-top: 40px; top: 50%; }
-        .timeline-item h3 { color: var(--orange); font-size: 28px; font-family: 'Poppins', sans-serif; margin-bottom: 10px; }
+        .timeline-item h3 { color: var(--orange); font-size: 28px; font-family: var(--font-family-base); margin-bottom: 10px; }
         .timeline-item .title-text { font-weight: 700; color: var(--teal); margin-bottom: 10px; font-size: 18px; }
         .timeline-item .desc-text { font-size: 15px; line-height: 1.5; color: var(--grey); }
 
@@ -402,7 +469,7 @@
         /* STAR 라벨 (Situation / Task / Result 텍스트 위 레이블) */
         .star-label {
             color: var(--orange);
-            font-family: 'Poppins', sans-serif;
+            font-family: var(--font-family-base);
             font-size: 12px;
             font-weight: 700;
             letter-spacing: 2px;
@@ -423,7 +490,7 @@
         }
         .metric-panel .number {
             color: var(--orange);
-            font-family: 'Poppins', sans-serif;
+            font-family: var(--font-family-base);
             font-size: 60px;
             font-weight: 700;
             line-height: 1;
@@ -436,6 +503,36 @@
             letter-spacing: 0.5px;
             margin-top: 8px;
         }
+
+        /* Reward Event 아키텍처 다이어그램 전용 스타일 */
+        .diagram-wrapper {
+            width: 100%;
+            background: #fff;
+            border: 1px solid rgba(54, 69, 79, 0.15);
+            border-radius: 14px;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+            padding: 14px;
+        }
+
+        .diagram-caption {
+            margin-top: 10px;
+            font-size: 14px;
+            color: var(--grey);
+            text-align: center;
+            margin-bottom: 0;
+        }
+
+        /* Feature: Reward 섹션 Poppins 폰트 적용 */
+        .reward-poppins,
+        .reward-poppins h1,
+        .reward-poppins h2,
+        .reward-poppins h3,
+        .reward-poppins p,
+        .reward-poppins li,
+        .reward-poppins span,
+        .reward-poppins div {
+            font-family: var(--font-family-base) !important;
+        }
     </style>
 </head>
 <body>
@@ -445,8 +542,8 @@
     <div class="bg-design-dark"></div>
     <div class="dark-accent-line"></div>
     <div class="title-layout">
-        <h1>황교진<br><span class="accent">Full-Stack & DevOps</span></h1>
-        <p class="subtitle" style="color: var(--cream); opacity: 0.9;">현장 중심의 가치를 높이는 IT 엔지니어</p>
+        <h1>황교진<br><span class="accent">Full-Stack Developer <span style="color: var(--cream);">&amp;</span> DevOps Engineer</span></h1>
+        <p class="subtitle" style="color: var(--cream); opacity: 0.9;">대규모 트래픽 환경에서 최고의 사용자 경험을 설계합니다.</p>
     </div>
 </div>
 
@@ -488,25 +585,30 @@
     <div class="bg-design-light"></div>
     <h2 class="slide-title">Core Skills</h2>
     <div class="content-area">
-        <div class="tiled-content">
+        <div class="tiled-content" style="display:grid; grid-template-columns:1fr 1fr; gap:24px; width:100%;">
             <div class="tile">
-                <div class="icon"><i class="fa-solid fa-code"></i></div>
-                <h3 style="color: var(--teal);">Full-Stack</h3>
-                <p><strong>Java 17, Spring Boot, JPA, PHP</strong> 등을 활용한 견고한 풀스택 아키텍처 및 RESTful API 설계.</p>
-                <p><strong>React.js, TypeScript</strong> 기반의 직관적이고 반응형 UI/UX 프론트엔드 개발 경험.</p>
+                <div class="icon"><i class="fa-solid fa-server"></i></div>
+                <h3 style="color: var(--teal);">Backend</h3>
+                <p><strong>Java 17, Spring Boot, Spring Security, JPA/Hibernate, PHP</strong></p>
+                <p><strong>API Design (REST)</strong> 기반의 백엔드 설계 및 구현 경험.</p>
+            </div>
+            <div class="tile">
+                <div class="icon"><i class="fa-solid fa-laptop-code"></i></div>
+                <h3 style="color: var(--teal);">Frontend</h3>
+                <p><strong>React.js, TypeScript, JavaScript, HTML/CSS</strong></p>
+                <p>사용자 중심의 반응형 UI/UX 구현 및 화면 구조 설계 경험.</p>
             </div>
             <div class="tile">
                 <div class="icon"><i class="fa-solid fa-cloud"></i></div>
                 <h3 style="color: var(--teal);">Cloud & DevOps</h3>
-                <p><strong>AWS (EC2, S3, RDS, Route53)</strong> 클라우드 인프라 설계, 마이그레이션 및 최적화 운영.</p>
-                <p><strong>Docker</strong> 컨테이너화 및 Linux 환경 관리, CI/CD 파이프라인 연동 무중단 배포.</p>
+                <p><strong>AWS(EC2, S3, RDS, Route53), Docker, Linux</strong></p>
+                <p>클라우드 인프라 구축·운영 및 배포 자동화 기반 서비스 안정화 경험.</p>
             </div>
             <div class="tile">
                 <div class="icon"><i class="fa-solid fa-database"></i></div>
-                <h3 style="color: var(--teal);">DB & Tools</h3>
-                <p><strong>MySQL, Redis</strong>를 활용한 효율적인 데이터베이스 모델링 및 캐싱 처리.</p>
-                <br>
-                <p><strong>Git, GitHub Actions, Postman</strong> 등 협업 및 개발 생산성 향상을 위한 전문 도구 활용.</p>
+                <h3 style="color: var(--teal);">Database & Tools</h3>
+                <p><strong>MySQL, Redis</strong> 기반 데이터 모델링 및 캐싱 설계.</p>
+                <p><strong>Git(+Actions), IntelliJ IDEA, VS Code, Postman</strong> 중심의 협업/개발 도구 활용.</p>
             </div>
         </div>
     </div>
@@ -528,34 +630,45 @@
     <div class="bg-design-light"></div>
     <h2 class="slide-title">Key Projects</h2>
     <div class="content-area">
-        <div class="tiled-content">
-            <div class="image-tile">
-                <div class="image-wrapper">
-                    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80" alt="Data center server racks">
+        <div class="key-project-grid">
+            <div class="key-project-card">
+                <div class="project-head">
+                    <span class="project-icon"><i class="fa-solid fa-bolt"></i></span>
+                    <span class="project-index">Project 01</span>
+                </div>
+                <h3>선착순 리워드 이벤트 서버</h3>
+                <p>Redis ZSET 대기열과 Kafka 비동기 지급을 결합해 1만+ 동시 접속을 가정한 피크 트래픽을 흡수하고, 202 PENDING 응답으로 API 지연을 완화했습니다.</p>
+            </div>
+            <div class="key-project-card">
+                <div class="project-head">
+                    <span class="project-icon"><i class="fa-solid fa-desktop"></i></span>
+                    <span class="project-index">Project 02</span>
                 </div>
                 <h3>210대 데스크톱 Zero-Touch 배포</h3>
-                <p>Dnsmasq · FOG Server 기반 PXE 부팅 환경 단독 구축. Intel VMD BIOS 잠금 우회 및 Snapin 64비트 레지스트리 정책 강제 적용으로 210대 전 PC 무인 배포를 완성했습니다.</p>
+                <p>Dnsmasq · FOG 오픈소스(FOG Server) 기반 PXE 환경을 구축하고 Intel VMD 잠금 우회, Snapin 64비트 레지스트리 정책 적용으로 210대 무인 배포를 완료했습니다.</p>
             </div>
-            <div class="image-tile">
-                <div class="image-wrapper">
-                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=80" alt="AWS cloud infrastructure security">
+            <div class="key-project-card">
+                <div class="project-head">
+                    <span class="project-icon"><i class="fa-solid fa-shield-halved"></i></span>
+                    <span class="project-index">Project 03</span>
                 </div>
                 <h3>HRD 원격훈련 LMS 인프라 구축</h3>
-                <p>한국산업인력공단 교육 승인에 필요한 AWS VPC 3계층 보안 격리(Public/Private Subnet · NAT Gateway · NACL) 설계 및 PHP 레거시 무중단 마이그레이션. 보안 실사를 단 1회 만에 무결점 통과했습니다.</p>
+                <p>AWS VPC 3계층 보안 격리와 PHP 레거시 무중단 마이그레이션을 수행해 공공기관 보안 실사를 1회에 무결점 통과했습니다.</p>
             </div>
-            <div class="image-tile">
-                <div class="image-wrapper">
-                    <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=600&q=80" alt="Technical lecture and presentation">
+            <div class="key-project-card">
+                <div class="project-head">
+                    <span class="project-icon"><i class="fa-solid fa-chalkboard-user"></i></span>
+                    <span class="project-index">Project 04</span>
                 </div>
                 <h3>AWS 아키텍처 기술 강의</h3>
-                <p>비개발자 및 주니어 개발자를 대상으로 AWS 클라우드 아키텍처 강의를 직접 기획·진행. VPC 설계, EC2·RDS 운영, 보안 그룹 정책 등 현장에서 바로 적용할 수 있는 실무 중심 커리큘럼을 구성하여, 수강생 스스로 인프라를 이해하고 운영할 수 있는 역량을 기를 수 있도록 이끌었습니다.</p>
+                <p>비개발자·주니어 대상 AWS 아키텍처 실무 교육을 기획·운영하며 VPC, EC2·RDS, 보안 그룹 중심의 현장형 커리큘럼을 구축했습니다.</p>
             </div>
         </div>
     </div>
 </div>
 
 <!-- Slide 3: Core Highlights -->
-<div class="slide-container" id="slide3">
+<!-- <div class="slide-container" id="slide3">
     <div class="bg-design-light"></div>
     <h2 class="slide-title">Core Highlights</h2>
     <div class="content-area">
@@ -573,12 +686,13 @@
             <div style="display: flex; flex-direction: column; justify-content: center;">
                 <h3 style="color: var(--teal); font-size: 28px;">인프라 자동화 & 클라우드 보안</h3>
                 <br>
-                <p style="margin-bottom: 25px;"><code style="background:rgba(11,83,81,0.08); border-radius:3px; padding:1px 6px; font-size:14px;">Dnsmasq</code> · <code style="background:rgba(11,83,81,0.08); border-radius:3px; padding:1px 6px; font-size:14px;">FOG Server</code> 기반 PXE 부팅 환경을 단독 구축하여, 마리오 아울렛 <strong>210대 데스크톱을 Zero-Touch로 자동 배포</strong>. Intel VMD BIOS 잠금 우회 등 4건의 하드웨어 장애를 소프트웨어 레이어에서 직접 해결했습니다.</p>
+                <p style="margin-bottom: 25px;"><code style="background:rgba(11,83,81,0.08); border-radius:3px; padding:1px 6px; font-size:14px;">Dnsmasq</code> · <code style="background:rgba(11,83,81,0.08); border-radius:3px; padding:1px 6px; font-size:14px;">FOG 오픈소스(FOG Server)</code> 기반 PXE 부팅 환경을 단독 구축하여, 마리오 아울렛 <strong>210대 데스크톱을 Zero-Touch로 자동 배포</strong>. Intel VMD BIOS 잠금 우회 등 4건의 하드웨어 장애를 소프트웨어 레이어에서 직접 해결했습니다.</p>
                 <p>한국산업인력공단 HRD 원격훈련 LMS를 위한 <strong>AWS VPC 3계층 보안 아키텍처</strong>(Public/Private Subnet · NAT Gateway · NACL)를 설계하고, PHP 레거시를 무중단 마이그레이션. 인프라 보안 실사를 <strong>단 1회 만에 무결점 통과</strong>했습니다.</p>
             </div>
         </div>
     </div>
-</div>
+</div> -->
+
 
 <!-- Slide 4: Troubleshooting Cases -->
 <!-- <div class="slide-container" id="slide4">
@@ -605,9 +719,199 @@
 </div> -->
 
 
+<!-- Feature: 선착순 리워드 이벤트 서버 프로젝트 섹션 -->
+<!-- Run Order: Summary -> Problem/Architecture -> Decision/Validation -->
 
+<!-- Slide Reward-1: 프로젝트 섹션 타이틀 + 한 줄 요약 (어두운 테마) -->
+<div class="slide-container dark reward-poppins" id="slide-reward-1">
+    <div class="bg-design-dark"></div>
+    <div class="dark-accent-line"></div>
+    <div class="section-title-layout">
+        <hr>
+        <h2>선착순 리워드 이벤트 서버</h2>
+        <p>대기열 기반 서버 보호 + 비동기 지급 처리로 피크 트래픽 대응</p>
+        <p style="font-size:17px; margin-top:16px; opacity:0.65;">
+            Java 17 &nbsp;·&nbsp; Spring Boot 3.x &nbsp;·&nbsp; Redis ZSET &nbsp;·&nbsp; Kafka &nbsp;·&nbsp; Redisson Lock
+        </p>
+    </div>
+</div>
 
+<!-- Slide Reward-2: 문제 배경 + 핵심 아키텍처 -->
+<div class="slide-container reward-poppins" id="slide-reward-2">
+    <div class="bg-design-light"></div>
+    <h2 class="slide-title">Problem &amp; Architecture</h2>
+    <div class="content-area">
+        <div class="two-column" style="grid-template-columns: 1.2fr 0.8fr; align-items: stretch;">
+            <div style="display:flex; flex-direction:column; justify-content:center; gap:18px;">
+                <div>
+                    <p class="star-label">1) 해결한 문제와 배경</p>
+                    <p style="margin-bottom:12px;">
+                        선착순 이벤트에서 동시 접속이 순간적으로 1만+ 규모로 몰릴 때, 동기 처리 중심 구조는 재고 경합과 응답 지연이 동시에 발생해 500 오류로 이어질 수 있었습니다.
+                        목표는 <strong>서버 붕괴 방지</strong>, <strong>대기 UX 제공</strong>, <strong>지급 처리 경로 분리</strong>였습니다.
+                    </p>
+                </div>
 
+                <div>
+                    <p class="star-label">2) 내가 설계/구현한 핵심 아키텍처</p>
+                    <p style="margin-bottom:12px;">
+                        <strong>도메인 모델:</strong> <code>User</code>, <code>Event</code>, <code>RewardHistory</code>를 분리하고,
+                        <code>RewardHistory</code> 상태를 <code>PENDING/SUCCESS/FAILED</code>로 관리해 비동기 처리 결과를 추적했습니다.
+                    </p>
+                    <p style="margin-bottom:12px;">
+                        <strong>요청 흐름:</strong> 사용자 요청 시 Redis ZSET 대기열(<code>score=timestamp</code>)에 진입시키고, <code>ZRANK</code>로 순번/예상 대기 시간을 반환했습니다.
+                        스케줄러(1초 주기)가 상위 N명을 dequeue하여 Kafka로 발행하면, 소비자가 지급 이력을 저장하는 구조로 분리했습니다.
+                    </p>
+                    <p style="margin-bottom:0;">
+                        <strong>API 경로 정책:</strong> 재고만 선차감 후 <code>reward-issue-topic</code> 발행, API는 <strong>202 + PENDING</strong>으로 즉시 응답하여
+                        DB insert 지연을 동기 요청 경로에서 제거했습니다.
+                    </p>
+                </div>
+            </div>
+
+            <div class="metric-panel">
+                <div>
+                    <div class="number">1만+</div>
+                    <div class="number-label">동시 접속 가정</div>
+                </div>
+                <div>
+                    <div class="number">202</div>
+                    <div class="number-label">즉시 응답 상태 코드</div>
+                </div>
+                <div>
+                    <div class="number">1초</div>
+                    <div class="number-label">Queue Scheduler 주기</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide Reward-2A: 아키텍처 다이어그램 -->
+<div class="slide-container reward-poppins" id="slide-reward-2a">
+    <div class="bg-design-light"></div>
+    <h2 class="slide-title">Architecture Diagram</h2>
+    <div class="content-area">
+        <div class="diagram-wrapper">
+            <svg viewBox="0 0 1140 500" width="100%" role="img" aria-label="선착순 리워드 이벤트 서버 아키텍처 다이어그램">
+                <defs>
+                    <marker id="arrow-teal" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+                        <path d="M0,0 L10,4 L0,8 Z" fill="#0B5351"></path>
+                    </marker>
+                    <marker id="arrow-grey" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+                        <path d="M0,0 L10,4 L0,8 Z" fill="#36454F"></path>
+                    </marker>
+                </defs>
+
+                <!-- KPI badges -->
+                <rect x="30" y="18" rx="16" ry="16" width="180" height="34" fill="#FAF9F6" stroke="#0B5351" />
+                <text x="120" y="40" text-anchor="middle" font-size="13" fill="#0B5351" font-weight="700">동시 접속 가정 1만+</text>
+                <rect x="225" y="18" rx="16" ry="16" width="170" height="34" fill="#FAF9F6" stroke="#E07A5F" />
+                <text x="310" y="40" text-anchor="middle" font-size="13" fill="#36454F" font-weight="700">P95 &lt; 200ms 목표</text>
+                <rect x="410" y="18" rx="16" ry="16" width="170" height="34" fill="#FAF9F6" stroke="#36454F" />
+                <text x="495" y="40" text-anchor="middle" font-size="13" fill="#36454F" font-weight="700">실패율 &lt; 1% 목표</text>
+
+                <!-- Core flow top row -->
+                <rect x="40" y="90" rx="10" ry="10" width="160" height="70" fill="#ffffff" stroke="#36454F" />
+                <text x="120" y="120" text-anchor="middle" font-size="14" fill="#36454F" font-weight="700">1) 사용자 요청</text>
+                <text x="120" y="142" text-anchor="middle" font-size="12" fill="#36454F">/events/{id}/queue</text>
+
+                <rect x="255" y="90" rx="10" ry="10" width="190" height="70" fill="#ffffff" stroke="#0B5351" />
+                <text x="350" y="118" text-anchor="middle" font-size="14" fill="#0B5351" font-weight="700">2) Redis ZSET 대기열</text>
+                <text x="350" y="140" text-anchor="middle" font-size="12" fill="#36454F">ZADD, ZRANK (순번/예상시간)</text>
+
+                <rect x="500" y="90" rx="10" ry="10" width="200" height="70" fill="#ffffff" stroke="#0B5351" />
+                <text x="600" y="118" text-anchor="middle" font-size="14" fill="#0B5351" font-weight="700">3) Queue Scheduler</text>
+                <text x="600" y="140" text-anchor="middle" font-size="12" fill="#36454F">1초 주기 ZRANGE/ZREMRANGEBYRANK</text>
+
+                <rect x="755" y="90" rx="10" ry="10" width="180" height="70" fill="#ffffff" stroke="#36454F" />
+                <text x="845" y="118" text-anchor="middle" font-size="14" fill="#36454F" font-weight="700">4) Reward API</text>
+                <text x="845" y="140" text-anchor="middle" font-size="12" fill="#36454F">재고 선차감 + 202 PENDING</text>
+
+                <rect x="960" y="90" rx="10" ry="10" width="150" height="70" fill="#ffffff" stroke="#E07A5F" />
+                <text x="1035" y="118" text-anchor="middle" font-size="14" fill="#E07A5F" font-weight="700">5) Kafka</text>
+                <text x="1035" y="140" text-anchor="middle" font-size="12" fill="#36454F">reward-issue-topic</text>
+
+                <!-- Arrows top -->
+                <line x1="200" y1="125" x2="255" y2="125" stroke="#0B5351" stroke-width="2.5" marker-end="url(#arrow-teal)" />
+                <line x1="445" y1="125" x2="500" y2="125" stroke="#0B5351" stroke-width="2.5" marker-end="url(#arrow-teal)" />
+                <line x1="700" y1="125" x2="755" y2="125" stroke="#0B5351" stroke-width="2.5" marker-end="url(#arrow-teal)" />
+                <line x1="935" y1="125" x2="960" y2="125" stroke="#0B5351" stroke-width="2.5" marker-end="url(#arrow-teal)" />
+
+                <!-- Consumer and DB -->
+                <rect x="830" y="255" rx="10" ry="10" width="210" height="78" fill="#ffffff" stroke="#36454F" />
+                <text x="935" y="284" text-anchor="middle" font-size="14" fill="#36454F" font-weight="700">6) Consumer</text>
+                <text x="935" y="306" text-anchor="middle" font-size="12" fill="#36454F">Retry + DLT 처리</text>
+                <text x="935" y="324" text-anchor="middle" font-size="12" fill="#36454F">이력 저장/상태 전이</text>
+
+                <rect x="510" y="360" rx="10" ry="10" width="260" height="88" fill="#ffffff" stroke="#0B5351" />
+                <text x="640" y="390" text-anchor="middle" font-size="14" fill="#0B5351" font-weight="700">7) MySQL RewardHistory</text>
+                <text x="640" y="412" text-anchor="middle" font-size="12" fill="#36454F">User-Event 매핑</text>
+                <text x="640" y="432" text-anchor="middle" font-size="12" fill="#36454F">PENDING / SUCCESS / FAILED</text>
+
+                <!-- Arrow Kafka -> Consumer -> DB -->
+                <line x1="1035" y1="160" x2="935" y2="255" stroke="#E07A5F" stroke-width="2.5" marker-end="url(#arrow-grey)" />
+                <line x1="830" y1="332" x2="770" y2="382" stroke="#0B5351" stroke-width="2.5" marker-end="url(#arrow-teal)" />
+
+                <!-- Distributed lock side component -->
+                <rect x="120" y="255" rx="10" ry="10" width="300" height="92" fill="#ffffff" stroke="#E07A5F" />
+                <text x="270" y="283" text-anchor="middle" font-size="14" fill="#E07A5F" font-weight="700">Redisson 분산 락 (AOP)</text>
+                <text x="270" y="306" text-anchor="middle" font-size="12" fill="#36454F">재고 차감 임계구역 보호</text>
+                <text x="270" y="326" text-anchor="middle" font-size="12" fill="#36454F">락 획득 실패/인터럽트 예외 코드화</text>
+
+                <line x1="420" y1="300" x2="790" y2="142" stroke="#E07A5F" stroke-width="2.2" stroke-dasharray="6 5" marker-end="url(#arrow-grey)" />
+                <text x="515" y="230" font-size="12" fill="#E07A5F" font-weight="700">재고 선차감 보호</text>
+
+                <!-- fallback note -->
+                <rect x="40" y="380" rx="10" ry="10" width="390" height="64" fill="#FAF9F6" stroke="#36454F" />
+                <text x="55" y="406" font-size="12.5" fill="#36454F" font-weight="700">Fallback / Requeue 전략</text>
+                <text x="55" y="426" font-size="12" fill="#36454F">Redis/Kafka 예외 시 dequeue 롤백 또는 재큐잉으로 유실 방지</text>
+            </svg>
+        </div>
+        <p class="diagram-caption">
+            요청 경로를 Queue/재고 차감/비동기 지급으로 분리해 피크 구간에서도 응답 안정성과 운영 복원력을 확보한 구조입니다.
+        </p>
+    </div>
+</div>
+
+<!-- Slide Reward-3: 의사결정 포인트 + 검증/성과/한계 -->
+<div class="slide-container reward-poppins" id="slide-reward-3">
+    <div class="bg-design-light"></div>
+    <h2 class="slide-title">Decision, Validation &amp; Limits</h2>
+    <div class="content-area">
+        <div class="two-column tiled">
+            <div>
+                <h3>[의사결정 포인트]</h3>
+                <p style="margin-bottom:12px;">
+                    <strong>동시성 제어:</strong> 초기 JPA 비관적 락에서 시작해, 이후 <code>@DistributedLock + AOP</code> 기반 Redisson 분산 락으로 전환했습니다.
+                    락 로직을 비즈니스 코드와 분리해 유지보수성과 재사용성을 높였고, 락 획득 실패/인터럽트 예외를 코드로 명시했습니다.
+                </p>
+                <p style="margin-bottom:12px;">
+                    <strong>지급 처리:</strong> 동기 DB 저장 대신 Kafka 비동기 소비 구조를 적용하고 Retry + DLT를 구성해
+                    API 응답 시간의 변동성을 줄이면서 장애 전파를 완화했습니다.
+                </p>
+                <p style="margin-bottom:0;">
+                    <strong>UX 전략:</strong> 과부하 시 실패 응답을 늘리는 대신, Redis ZSET 기반 순번/예상 시간 노출로 사용자에게 예측 가능한 대기 경험을 제공했습니다.
+                </p>
+            </div>
+
+            <div>
+                <h3>[검증 · 성과 · 한계]</h3>
+                <p style="margin-bottom:12px;">
+                    <strong>검증:</strong> 단위 테스트(도메인/대기열/스케줄러), Testcontainers 통합 테스트(MySQL·Redis·Kafka),
+                    100개 동시 요청 정합성 시나리오를 수행했습니다.
+                </p>
+                <p style="margin-bottom:12px;">
+                    <strong>부하 테스트:</strong> K6 스파이크(10초 ramp-up 1000 VUs → 30초 유지 → 10초 ramp-down) 시나리오와
+                    <code>P95 &lt; 200ms</code>, 실패율 <code>&lt; 1%</code> 기준으로 점검했습니다.
+                </p>
+                <p style="margin-bottom:0;">
+                    <strong>한계:</strong> 로컬 환경에서 Gradle 캐시 파일 잠금 이슈로 테스트 실행이 간헐적으로 차단되었습니다.
+                    이를 코드 결함과 분리해 기술했으며, 설계/로직 검증 범위는 테스트 코드와 부하 스크립트 기준으로 명확히 구분했습니다.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <!-- Slide Mario-1: 마리오 아울렛 프로젝트 섹션 타이틀 (어두운 테마) -->
@@ -618,7 +922,7 @@
         <hr>
         <h2>인프라 자동화</h2>
         <p>210대 데스크톱 Zero-Touch 배포 파이프라인 구축 사례</p>
-        <p style="font-size:17px; margin-top:16px; opacity:0.65;">PXE Boot &nbsp;·&nbsp; FOG Server &nbsp;·&nbsp; ProxyDHCP &nbsp;·&nbsp; Snapin Automation</p>
+        <p style="font-size:17px; margin-top:16px; opacity:0.65;">PXE Boot &nbsp;·&nbsp; FOG Open Source &nbsp;·&nbsp; ProxyDHCP &nbsp;·&nbsp; Snapin Automation</p>
     </div>
 </div>
 
@@ -674,7 +978,7 @@
             </div>
             <div>
                 <h3>[Issue 02]<br>Intel VMD 잠금 — NVMe 캡처 이슈</h3>
-                <p style="margin-bottom:14px;"><strong>Situation:</strong> 삼성 데스크톱 제조사 BIOS에서 Intel VMD(RAID) 모드가 잠겨 있어, FOG Server가 <code>nvme0n1</code> 디스크를 인식하지 못하고 600MB의 빈 파티션만 캡처하는 치명적 장애 발생.</p>
+                <p style="margin-bottom:14px;"><strong>Situation:</strong> 삼성 데스크톱 제조사 BIOS에서 Intel VMD(RAID) 모드가 잠겨 있어, FOG 오픈소스 서버가 <code>nvme0n1</code> 디스크를 인식하지 못하고 600MB의 빈 파티션만 캡처하는 치명적 장애 발생.</p>
                 <p style="margin-bottom:14px;"><strong>Action:</strong> BIOS 설정 우회 불가 판단 후 FOG 리눅스 커널(<code>bzImage</code>)을 최신 버전으로 직접 업데이트. Debug 모드 터미널에서 <code>lsblk</code> 명령어로 <code>nvme0n1</code> 물리 인식을 검증한 뒤 수동 캡처 진행. <code>Single Disk - Resizable</code> 옵션으로 동적 파티셔닝 적용 최적화.</p>
                 <p style="margin-bottom:0;"><strong>Result:</strong> 하드웨어 제약을 소프트웨어 레이어에서 우회하여 전체 디스크 이미지 캡처 및 배포 성공.</p>
             </div>
@@ -721,7 +1025,7 @@
             <div class="tile">
                 <div class="icon"><i class="fa-solid fa-hard-drive"></i></div>
                 <h3 style="color:var(--teal);">Imaging &amp; Deployment</h3>
-                <p><strong>FOG Server</strong> — 네트워크 기반 OS 이미지 캡처·배포</p>
+                <p><strong>FOG Open Source (FOG Server)</strong> — 네트워크 기반 OS 이미지 캡처·배포</p>
                 <p><strong>bzImage (FOG Kernel)</strong> — NVMe VMD 인식을 위한 커널 직접 업데이트</p>
                 <p><strong>lsblk</strong> — Debug 모드 디스크 물리 인식 검증</p>
                 <p><strong>Single Disk - Resizable</strong> — 타겟 PC 환경별 동적 파티셔닝 최적화</p>
@@ -865,6 +1169,7 @@
         </div>
     </div>
 </div>
+
 
 <!-- Slide 8: Career & Education Timeline -->
 <div class="slide-container" id="slide8">
