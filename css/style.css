@@ -529,7 +529,7 @@ section[id] {
 }
 
 .btn-outline {
-  background: transparent;
+  background: var(--bg-primary);
   color: var(--primary-color);
   border-color: var(--primary-color);
 }
